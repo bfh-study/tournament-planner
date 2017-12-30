@@ -5,27 +5,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <title>{% block title %}Tournament Planner{% endblock %}</title>
         {% block stylesheets %}
-            <link rel="stylesheet" type="text/css" href="{{ asset('build/css/global.css') }}" />
+            <link rel="stylesheet" type="text/css" href="{{ asset('build/css/app.css') }}" />
         {% endblock %}
     </head>
     <body>
-        <nav class="navbar navbar-expand-sm fixed-top navbar-dark bg-dark" role="navigation">
-            <a class="navbar-brand app-title" href="#">Tournament Planner</a>
-            <div class="collapse navbar-collapse">
-            </div>
-        </nav>
-        <div class="container-fluid">
+        <div class="container">
+            <nav class="navbar navbar-dark bg-dark">
+                <a class="navbar-brand app-title" href="/">Tournament Planner</a>
+            </nav>
             {% block body %}{% endblock %}
-        </div>
-        <footer class="sticky-footer">
-            <div class="container">
+            <footer class="sticky-footer">
                 <div class="text-center">
                     <small>Copyright © 2017</small>
                 </div>
-            </div>
-        </footer>
+            </footer>
+        </div>
         {% block javascripts %}
-            <script src="{{ asset('js/main.js') }}"></script>
+            {# <script src="{{ asset('js/main.js') }}"></script> #}
         {% endblock %}
     </body>
 </html>
