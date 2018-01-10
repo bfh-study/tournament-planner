@@ -14,9 +14,9 @@ security:
             anonymous: ~
             form_login:
                 provider: user_db_provider
-                default_target_path: homepage
+                default_target_path: dashboard
                 login_path: login
                 check_path: login
     access_control:
-        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^\/(|login|register)$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, roles: ROLE_USER }

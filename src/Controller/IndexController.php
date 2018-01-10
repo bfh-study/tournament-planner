@@ -8,9 +8,18 @@ use Symfony\Component\Routing\Annotation\Route;
 class IndexController extends Controller {
 
     /**
-     * @Route("/", name="homepage")
+     * @Route("/", name="index")
      */
     public function index() {
-        return $this->render('base.html.twig');
+        if ($this->isGranted('IS_AUTHENTICATED_REMEMBERED'))
+            return $this->redirectToRoute('dashboard');
+        return $this->render('index/index.html.twig');
+    }
+
+    /**
+     * @Route("/dashboard", name="dashboard")
+     */
+    public function dashboard() {
+        return $this->render('index/dashboard.html.twig');
     }
 }
