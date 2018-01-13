@@ -3,10 +3,11 @@
 {% block body %}
 
 <div class="jumbotron">
-    <h1>Welcome to TP!</h1>
-    <p class="lead">Plan your tournaments</p>
+    <h1>{% trans from "messages" %}Welcome to TP!{% endtrans %}</h1>
+    <p class="lead">{% trans from "messages" %}Plan your tournaments{% endtrans %}</p>
     <p class="lead">
         <a class="btn btn-primary btn-lg" href="{{ path('login') }}" role="button">Login</a>
+        <a class="btn btn-success btn-lg" href="{{ path('user_registration') }}" role="button">{% trans from "messages" %}Register{% endtrans %}</a>
     </p>
 </div>
 

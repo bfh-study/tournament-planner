@@ -6,6 +6,34 @@
                 <source>Welcome</source>
                 <target>Welcome</target>
             </trans-unit>
+            <trans-unit id="text.language">
+                <source>Language</source>
+                <target>Language</target>
+            </trans-unit>
+            <trans-unit id="text.welcome_message">
+                <source>Welcome to TP!</source>
+                <target>Welcome to Tournament Planner!</target>
+            </trans-unit>
+            <trans-unit id="text.welcome_sub_message">
+                <source>Plan your tournaments</source>
+                <target>Plan your tournaments</target>
+            </trans-unit>
+            <trans-unit id="text.register">
+                <source>Register</source>
+                <target>Register</target>
+            </trans-unit>
+            <trans-unit id="error.login.invalid_credentials">
+                <source>Invalid credentials.</source>
+                <target>Invalid credentials.</target>
+            </trans-unit>
+            <trans-unit id="form.username">
+                <source>Username</source>
+                <target>Username</target>
+            </trans-unit>
+            <trans-unit id="form.password">
+                <source>Password</source>
+                <target>Password</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

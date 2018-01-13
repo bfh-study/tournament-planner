@@ -22,7 +22,7 @@
             <div class="container">
                 <div>
                     <nav class="nav justify-content-end flex-column flex-sm-row">
-                        Language
+                        {% trans from "messages" %}Language{% endtrans %}
                         <a class="text-xs-center nav-link" href="{{ path('locale', {'path': app.request.attributes.get('_route'), 'params': app.request.attributes.get('_route_params'), '_locale': 'en'}) }}">EN</a>
                         <a class="text-xs-center nav-link" href="{{ path('locale', {'path': app.request.attributes.get('_route'), 'params': app.request.attributes.get('_route_params'), '_locale': 'de'}) }}">DE</a>
                     </nav>
