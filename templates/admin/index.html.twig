@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>{% trans from "messages" %}Admin Area{% endtrans %}</h1>
+    <hr />
+
+    <h3>{% trans from "messages" %}All active Users{% endtrans %}</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>{% trans from "messages" %}Username{% endtrans %}</th>
+            <th>{% trans from "messages" %}Mail{% endtrans %}</th>
+            <th>{% trans from "messages" %}Role{% endtrans %}</th>
+            <th>{% trans from "messages" %}Action{% endtrans %}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in userList %}
+            <tr>
+                <th scope="row">{{ loop.index }}</th>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{% if user.roles[0] == 'ROLE_ADMIN' %}Admin{% else %}User{% endif %}</td>
+                <td>
+                    <a class="oi oi-ban btn-sm" title="{% trans from "messages" %}Deactivate User{% endtrans %}" href="{{ path('admin_deactivate_user', {'id': user.email}) }}" aria-hidden="true"></a>
+                    <a class="oi oi-person btn-sm" title="{% trans from "messages" %}Change Rights{% endtrans %}" href="{{ path('admin_change_rights', {'id': user.email}) }}" aria-hidden="true"></a>
+                    <a class="oi oi-target btn-sm" title="{% trans from "messages" %}Show Tournaments{% endtrans %}" href="{{ path('admin_show_tournaments', {'id': user.email}) }}" aria-hidden="true"></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

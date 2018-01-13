@@ -26,6 +26,18 @@
                 <source>Invalid credentials.</source>
                 <target>Ungültige Anmeldedaten.</target>
             </trans-unit>
+            <trans-unit id="error.403.title">
+                <source>Ups! - Access denied</source>
+                <target>Ups! - Zugang verweigert</target>
+            </trans-unit>
+            <trans-unit id="error.403.info">
+                <source>You have not enough rights</source>
+                <target>Du hast nicht genug Rechte</target>
+            </trans-unit>
+            <trans-unit id="error.403.link">
+                <source>return to dashboard</source>
+                <target>Zurück zum Dashboard</target>
+            </trans-unit>
             <trans-unit id="form.name">
                 <source>Name</source>
                 <target>Name</target>
