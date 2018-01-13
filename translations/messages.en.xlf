@@ -26,6 +26,18 @@
                 <source>Invalid credentials.</source>
                 <target>Invalid credentials.</target>
             </trans-unit>
+            <trans-unit id="error.403.title">
+                <source>Ups! - Access denied</source>
+                <target>Ups! - Access denied</target>
+            </trans-unit>
+            <trans-unit id="error.403.info">
+                <source>You have not enough rights</source>
+                <target>You have not enough rights</target>
+            </trans-unit>
+            <trans-unit id="error.403.link">
+                <source>return to dashboard</source>
+                <target>return to dashboard</target>
+            </trans-unit>
             <trans-unit id="form.name">
                 <source>Name</source>
                 <target>Name</target>
