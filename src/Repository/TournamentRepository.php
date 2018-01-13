@@ -15,4 +15,13 @@ class TournamentRepository extends EntityRepository
             ->getQuery()
             ->getArrayResult();
     }
+
+    public function findAllTournamentsByHash($hash) {
+        return $this->createQueryBuilder('t')
+            ->where('t.hash = :hash')
+            ->andWhere('t.date >= CURRENT_TIMESTAMP()')
+            ->setParameter(':hash', $hash)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }
