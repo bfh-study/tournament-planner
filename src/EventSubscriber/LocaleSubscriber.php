@@ -36,11 +36,14 @@ class LocaleSubscriber implements EventSubscriberInterface
     public function onKernelRequest(GetResponseEvent $event)
     {
         $request = $event->getRequest();
-        if (!$request->hasPreviousSession()) {
+        $locale = $request->get('_locale');
+        if (!$request->hasPreviousSession() && !is_null($locale)) {
+            $request->setLocale($locale);
+            return;
+        } else if (!$request->hasPreviousSession()) {
             return;
         }
 
-        $locale = $request->get('_locale');
         if (!is_null($locale)) {
             $request->getSession()->set('_locale', $locale);
         } else {
