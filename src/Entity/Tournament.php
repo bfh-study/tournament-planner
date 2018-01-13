@@ -8,6 +8,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Table(name="tournaments")
  * @ORM\Entity(repositoryClass="App\Repository\TournamentRepository");
+ * @ORM\HasLifecycleCallbacks
  */
 class Tournament extends AuditBase
 {
@@ -38,6 +39,11 @@ class Tournament extends AuditBase
      * @ORM\Column(type="date")
      */
     private $date;
+
+    /**
+     * @ORM\Column(type="string", length=64)
+     */
+    private $hash;
 
     public function __construct(UserInterface $creator) {
         $this->creator = $creator;
@@ -105,5 +111,32 @@ class Tournament extends AuditBase
     public function setDate($date)
     {
         $this->date = $date;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHash()
+    {
+        return $this->hash;
+    }
+
+    /**
+     * @param string $hash
+     */
+    public function setHash($hash)
+    {
+        $this->hash = $hash;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function createHashOnPrePersist($hash)
+    {
+        if (!isset($this->hash)) {
+            $random = base64_encode(random_bytes(10));
+            $this->hash = hash('ripemd256', $this->getName() . '.' . $random);
+        }
     }
 }

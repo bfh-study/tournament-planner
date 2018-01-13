@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if type == 'success' %}
+      <div class="alert alert-success" role="alert">{{ msg|trans }}</div>
+  {% else %}
+      <div class="alert alert-danger" role="alert">{{ msg|trans }}</div>
+  {% endif %}
+{% endblock %}

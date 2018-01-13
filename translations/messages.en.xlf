@@ -26,6 +26,10 @@
                 <source>Invalid credentials.</source>
                 <target>Invalid credentials.</target>
             </trans-unit>
+            <trans-unit id="form.name">
+                <source>Name</source>
+                <target>Name</target>
+            </trans-unit>
             <trans-unit id="form.username">
                 <source>Username</source>
                 <target>Username</target>
@@ -33,6 +37,26 @@
             <trans-unit id="form.password">
                 <source>Password</source>
                 <target>Password</target>
+            </trans-unit>
+            <trans-unit id="register.team.add">
+                <source>Add Team</source>
+                <target>Add Team</target>
+            </trans-unit>
+            <trans-unit id="register.team.success">
+                <source>Congratulation! You registered your team successful.</source>
+                <target>Congratulation! You registered your team successful.</target>
+            </trans-unit>
+            <trans-unit id="register.team.not_found">
+                <source>No active tournament found</source>
+                <target>No active tournament found</target>
+            </trans-unit>
+            <trans-unit id="register.team.already_registered">
+                <source>Your team is already registered!</source>
+                <target>Your team is already registered!</target>
+            </trans-unit>
+            <trans-unit id="register.team.already_exists">
+                <source>Team already exists!</source>
+                <target>Team already exists!</target>
             </trans-unit>
         </body>
     </file>

@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {% trans from "messages" %}Team already exists!{% endtrans %}
+        </div>
+    {% endif %}
+
+    {% if isFormSubmittedAndValid %}
+        <div class="alert alert-success" role="alert">
+            {% trans from "messages" %}Congratulation! You registered your team successful.{% endtrans %}
+        </div>
+    {% else %}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    {% endif %}
+
+{% endblock %}

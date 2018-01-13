@@ -18,5 +18,5 @@ security:
                 login_path: login
                 check_path: login
     access_control:
-        - { path: ^\/(|login|register|locale)$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^\/(|login|register|register/team/[a-f0-9]*|locale)$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, roles: ROLE_USER }
