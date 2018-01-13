@@ -12,14 +12,23 @@
         <div class="container">
             <nav class="navbar navbar-dark bg-dark">
                 <a class="navbar-brand app-title" href="/">Tournament Planner</a>
+                <div class="" id="navbarNav">
+
+                </div>
             </nav>
             {% block body %}{% endblock %}
-            <footer class="sticky-footer">
-                <div class="text-center">
-                    <small>Copyright © 2017</small>
-                </div>
-            </footer>
         </div>
+        <footer class="sticky-footer">
+            <div class="container">
+                <div>
+                    <nav class="nav justify-content-end flex-column flex-sm-row">
+                        {% trans from "messages" %}Language{% endtrans %}
+                        <a class="text-xs-center nav-link" href="{{ path('locale', {'path': app.request.attributes.get('_route'), 'params': app.request.attributes.get('_route_params'), '_locale': 'en'}) }}">EN</a>
+                        <a class="text-xs-center nav-link" href="{{ path('locale', {'path': app.request.attributes.get('_route'), 'params': app.request.attributes.get('_route_params'), '_locale': 'de'}) }}">DE</a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
         {% block javascripts %}
             {# <script src="{{ asset('js/main.js') }}"></script> #}
         {% endblock %}

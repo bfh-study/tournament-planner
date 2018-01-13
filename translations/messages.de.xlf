@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="text.welcome">
+                <source>Welcome</source>
+                <target>Willkommen</target>
+            </trans-unit>
+            <trans-unit id="text.language">
+                <source>Language</source>
+                <target>Sprache</target>
+            </trans-unit>
+            <trans-unit id="text.welcome_message">
+                <source>Welcome to TP!</source>
+                <target>Willkommen beim Turnierplanner!</target>
+            </trans-unit>
+            <trans-unit id="text.welcome_sub_message">
+                <source>Plan your tournaments</source>
+                <target>Plane deine Turniere</target>
+            </trans-unit>
+            <trans-unit id="text.register">
+                <source>Register</source>
+                <target>Registrieren</target>
+            </trans-unit>
+            <trans-unit id="error.login.invalid_credentials">
+                <source>Invalid credentials.</source>
+                <target>Ungültige Anmeldedaten.</target>
+            </trans-unit>
+            <trans-unit id="form.username">
+                <source>Username</source>
+                <target>Benutzername</target>
+            </trans-unit>
+            <trans-unit id="form.password">
+                <source>Password</source>
+                <target>Passwort</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
