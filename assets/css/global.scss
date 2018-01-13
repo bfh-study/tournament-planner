@@ -29,3 +29,18 @@ body {
         background-color: $gray-200;
     }
 }
+
+.feedback {
+  color: red;
+}
+
+.form-signin {
+    background-color: $gray-100;
+    max-width: 360px;
+    padding: 15px;
+    margin: 30px auto;
+
+    button[type=submit] {
+      margin-top: 15px;
+    }
+}
