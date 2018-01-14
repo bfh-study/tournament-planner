@@ -16,6 +16,15 @@ class TournamentRepository extends EntityRepository
             ->getArrayResult();
     }
 
+    public function findAllActiveTournamentsByUser(User $user) {
+        return $this->createQueryBuilder('t')
+            ->where('t.creator = :user')
+            ->andWhere('t.date >= CURRENT_TIMESTAMP()')
+            ->setParameter(':user', $user->getEmail())
+            ->getQuery()
+            ->getArrayResult();
+    }
+
     public function findAllTournamentsByHash($hash) {
         return $this->createQueryBuilder('t')
             ->where('t.hash = :hash')

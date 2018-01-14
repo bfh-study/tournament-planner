@@ -18,39 +18,51 @@ class Team
 
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Tournament")
+     * @ORM\ManyToOne(targetEntity="Tournament", inversedBy="teams")
      */
     private $tournament;
 
     /**
+     * @var boolean
+     */
+    private $isDummy;
+
+    public function __construct($isDummy = false) {
+        $this->isDummy = $isDummy;
+    }
+
+    /**
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
     /**
      * @param string $name
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
     }
 
     /**
      * @return Tournament
      */
-    public function getTournament()
-    {
+    public function getTournament() {
         return $this->tournament;
     }
 
     /**
      * @param Tournament $tournament
      */
-    public function setTournament($tournament)
-    {
+    public function setTournament($tournament) {
         $this->tournament = $tournament;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDummy() {
+        return $this->isDummy;
     }
 }

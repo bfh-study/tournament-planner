@@ -4,52 +4,93 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="schedule")
- * @ORM\Entity()
+ * @ORM\Table(name="schedules")
+ * @ORM\Entity(repositoryClass="App\Repository\ScheduleRepository")
  */
-class Schedule{
+class Schedule {
 
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="Tournament")
+     * @ORM\JoinColumn(name="tournament", referencedColumnName="id")
      */
-    private $gameNumber;
+    private $tournament;
 
     /**
-     * @ORM\Id
      * @ORM\Column(type="datetime")
      */
     private $date;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\Column(type="integer", length=3)
+     */
+    private $gameNumber;
+
+    /**
+     * @ORM\Column(type="integer", length=3)
      */
     private $field;
 
     /**
-     * @ORM\OneToMany(targetEntity="Team", mappedBy="schedule")
+     * @ORM\ManyToOne(targetEntity="Team")
+     * @ORM\JoinColumns({
+     *     @ORM\JoinColumn(name="home_team_name", referencedColumnName="name", nullable=false),
+     *     @ORM\JoinColumn(name="home_team_tournament_id", referencedColumnName="tournament_id", nullable=false)
+     * })
      */
     private $homeTeam;
 
     /**
-     * @ORM\OneToMany(targetEntity="Team", mappedBy="schedule")
+     * @ORM\ManyToOne(targetEntity="Team")
+     * @ORM\JoinColumns({
+     *     @ORM\JoinColumn(name="away_team_name", referencedColumnName="name", nullable=false),
+     *     @ORM\JoinColumn(name="away_team_tournament_id", referencedColumnName="tournament_id", nullable=false)
+     * })
      */
     private $awayTeam;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $goalHome;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $goalAway;
+
+
+    public function __construct(Tournament $tournament = null) {
+        $this->tournament = $tournament;
+    }
+
+    /**
+     * @return Tournament
+     */
+    public function getTournament() {
+        return $this->tournament;
+    }
+
+    /**
+     * @return \Datetime
+     */
+    public function getDate() {
+        return $this->date;
+    }
+
+    /**
+     * @param \Datetime $date
+     */
+    public function setDate($date) {
+        $this->date = $date;
+    }
 
     /**
      * @return integer
      */
-    public function getGameNumber(){
+    public function getGameNumber()
+    {
         return $this->gameNumber;
     }
 
@@ -58,20 +99,6 @@ class Schedule{
      */
     public function setGameNumber($gameNumber){
         $this->gameNumber = $gameNumber;
-    }
-
-    /**
-     * @return datetime
-     */
-    public function getDate(){
-        return $this->date;
-    }
-
-    /**
-     * @param datetime $date
-     */
-    public function setDate($date){
-        $this->date = $date;
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -65,8 +66,26 @@ class Tournament extends AuditBase
      */
     private $backround;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Team", mappedBy="tournament")
+     */
+    private $teams;
+
+    /**
+     * Tournament constructor.
+     * @param UserInterface $creator
+     */
     public function __construct(UserInterface $creator) {
         $this->creator = $creator;
+        $this->teams = new ArrayCollection();
+    }
+
+    /**
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -214,5 +233,21 @@ class Tournament extends AuditBase
      */
     public function setBackround($backround){
         $this->backround = $backround;
+    }
+
+    /**
+     * @param ArrayCollection $teams
+     */
+    public function setTeams(ArrayCollection $teams)
+    {
+        $this->teams = $teams;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getTeams()
+    {
+        return $this->teams;
     }
 }

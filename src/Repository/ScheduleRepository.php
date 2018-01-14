@@ -9,7 +9,7 @@ class ScheduleRepository extends EntityRepository
 {
 
     public function findSchedule() {
-        return $this->createQueryBuilder()
+        return $this->createQueryBuilder('s')
             ->getQuery()
             ->getArrayResult();
     }
