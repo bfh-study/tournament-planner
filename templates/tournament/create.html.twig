@@ -1,9 +1,34 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
-  {{ form_start(form) }}
-  {{ form_widget(form) }}
-  {{ form_end(form) }}
-
+    <h1>{% trans from "messages" %}Create Tournament{% endtrans %}</h1>
+    <hr />
+    {{ form_start(form) }}
+    <h2>{% trans from "messages" %}Tournament{% endtrans %}</h2>
+    <div class="form-row">
+        <div class="col-6">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name,  {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-6">
+            {{ form_label(form.place) }}
+            {{ form_widget(form.place,  {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-6">
+            {{ form_label(form.type) }}
+            {{ form_widget(form.type,  {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-6">
+            {{ form_label(form.date) }}
+            {{ form_widget(form.date) }}
+        </div>
+    </div>
+    {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+    {{ form_end(form) }}
 {% endblock %}

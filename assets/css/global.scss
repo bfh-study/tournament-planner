@@ -34,6 +34,12 @@ body {
   color: red;
 }
 
+form {
+    button[type=submit] {
+        margin-top: 15px;
+    }
+}
+
 .form-signin {
     background-color: $gray-100;
     max-width: 360px;
