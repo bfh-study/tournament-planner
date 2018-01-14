@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -36,7 +37,7 @@ class Tournament extends AuditBase
     private $type;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $date;
 
@@ -45,8 +46,46 @@ class Tournament extends AuditBase
      */
     private $hash;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $fields;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $duration;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $interruption;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $backround;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Team", mappedBy="tournament")
+     */
+    private $teams;
+
+    /**
+     * Tournament constructor.
+     * @param UserInterface $creator
+     */
     public function __construct(UserInterface $creator) {
         $this->creator = $creator;
+        $this->teams = new ArrayCollection();
+    }
+
+    /**
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -138,5 +177,77 @@ class Tournament extends AuditBase
             $random = base64_encode(random_bytes(10));
             $this->hash = hash('ripemd256', $this->getName() . '.' . $random);
         }
+    }
+    
+    /**    
+     * @return integer
+     */
+    public function getFields(){
+        return $this->fields;
+    }
+
+    /**
+     * @param integer $fields
+     */
+    public function setFields($fields){
+        $this->fields = $fields;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getDuration(){
+        return $this->duration;
+    }
+
+    /**
+     * @param integer $duration
+     */
+    public function setDuration($duration){
+        $this->duration = $duration;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getInterruption(){
+        return $this->interruption;
+    }
+
+    /**
+     * @param integer $interruption
+     */
+    public function setInterruption($interruption){
+        $this->interruption = $interruption;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function hasBackround(){
+        return $this->backround;
+    }
+
+    /**
+     * @param boolean $backround
+     */
+    public function setBackround($backround){
+        $this->backround = $backround;
+    }
+
+    /**
+     * @param ArrayCollection $teams
+     */
+    public function setTeams(ArrayCollection $teams)
+    {
+        $this->teams = $teams;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getTeams()
+    {
+        return $this->teams;
     }
 }

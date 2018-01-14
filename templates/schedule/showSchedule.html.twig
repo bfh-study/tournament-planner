@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Schedule - {{ tournament.name }}</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Date</th>
+                <th>Field</th>
+                <th>Home</th>
+                <th>Away</th>
+                <th>Goal Home</th>
+                <th>Goal Away</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for schedule in scheduleList %}
+                <tr>
+                    <th scope="row">{{ loop.index }}</th>
+                    <td>{{ schedule.date|date("d.m.Y H:i") }}</td>
+                    <td>{{ schedule.field }}</td>
+                    <td>{{ schedule.homeTeam.name }}</td>
+                    <td>{{ schedule.awayTeam.name }}</td>
+                    <td>{% if schedule.goalHome == null %}-{% else %} schedule.goalHome{% endif %}</td>
+                    <td>{% if schedule.goalAway == null %}-{% else %} schedule.goalAway{% endif %}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

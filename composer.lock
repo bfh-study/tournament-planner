@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "7102d0e3bed1d2f29f7affb08a53dbe6",
+    "content-hash": "ec0d9bdb5a6df237037e7f8af4f52d4a",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1350,6 +1350,28 @@
                 "controllers"
             ],
             "time": "2017-12-04T18:33:55+00:00"
+        },
+        {
+            "name": "symfony/apache-pack",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/apache-pack.git",
+                "reference": "3aa5818d73ad2551281fc58a75afd9ca82622e6c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/apache-pack/zipball/3aa5818d73ad2551281fc58a75afd9ca82622e6c",
+                "reference": "3aa5818d73ad2551281fc58a75afd9ca82622e6c",
+                "shasum": ""
+            },
+            "type": "symfony-pack",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A pack for Apache support in Symfony",
+            "time": "2017-12-12T01:46:35+00:00"
         },
         {
             "name": "symfony/asset",
@@ -3209,16 +3231,16 @@
         },
         {
             "name": "symfony/translation",
-            "version": "v4.0.3",
+            "version": "v4.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "2bb1b9dac38d32c5afb00edc9371b5db4cf6d000"
+                "reference": "e2678768d2fcb7fe3d8108392626de1ece575634"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/2bb1b9dac38d32c5afb00edc9371b5db4cf6d000",
-                "reference": "2bb1b9dac38d32c5afb00edc9371b5db4cf6d000",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/e2678768d2fcb7fe3d8108392626de1ece575634",
+                "reference": "e2678768d2fcb7fe3d8108392626de1ece575634",
                 "shasum": ""
             },
             "require": {
@@ -3273,7 +3295,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-03T07:38:00+00:00"
+            "time": "2017-12-12T08:41:51+00:00"
         },
         {
             "name": "symfony/twig-bridge",
