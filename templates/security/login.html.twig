@@ -1,16 +1,26 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <form action="{{ path('login') }}" class="form-signin border border-dark rounded" method="post">
-        <h2>Login</h2>
-        <label class="src-only" for="username">{% trans %}Username{% endtrans %}:</label>
-        <input type="text" class="form-control form-control-lg" required id="username" name="_username" placeholder="{% trans %}Username{% endtrans %}" value="{{ last_username }}" />
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-3">{% trans from "messages" %}Login{%endtrans %}</h1>
+  </div>
+</div>
+<div class="container">
 
-        <label class="src-only" for="password">{% trans %}Password{% endtrans %}:</label>
-        <input type="password" class="form-control form-control-lg" required id="password" name="_password" placeholder="{% trans %}Password{% endtrans %}" />
-        {% if error %}
-            <div class="feedback">{{ error.messageKey|trans(error.messageData, 'messages') }}</div>
-        {% endif %}
-        <button class="btn btn-primary btn-block" type="submit">Login</button>
-  </form>
+    <div class="col-md-3">
+        <form action="{{ path('login') }}" method="post">
+            <label class="src-only" for="username">{% trans %}Username{% endtrans %}:</label>
+            <input type="text" class="form-control form-control-lg" required id="username" name="_username" placeholder="{% trans %}Username{% endtrans %}" value="{{ last_username }}" />
+
+            <label class="src-only" for="password">{% trans %}Password{% endtrans %}:</label>
+            <input type="password" class="form-control form-control-lg" required id="password" name="_password" placeholder="{% trans %}Password{% endtrans %}" />
+            {% if error %}
+                <div class="feedback">{{ error.messageKey|trans(error.messageData, 'messages') }}</div>
+            {% endif %}
+            <br />
+            <button class="btn btn-primary btn-block" type="submit">Login</button>
+        </form>
+    </div>
+</div>
 {% endblock %}

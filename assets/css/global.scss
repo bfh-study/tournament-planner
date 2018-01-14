@@ -1,6 +1,7 @@
 
 @import '~bootstrap/scss/bootstrap';
 @import '~open-iconic/font/css/open-iconic-bootstrap';
+@import '_variables';
 
 html {
     position: relative;
@@ -9,24 +10,37 @@ html {
 
 body {
     /* Margin bottom by footer height */
-    margin-bottom: 60px;
+    overflow-x: hidden;
+}
+
+body.fixed-nav{
+    padding-top: $navbar-height;
+}
+
+.content-wrapper{
+    min-height: calc(100vh - $navbar-height);
+    padding-top: 1rem;
+    margin: 0px 0px 2*$footer-height 0px;
 }
 
 .app-title {
   text-transform: uppercase;
 }
 
-.sticky-footer {
-    position: absolute;
+footer.sticky-footer {
+    position: fixed;
+    right: 0;
     bottom: 0;
-    width: 100%;
-    height: 60px;
-    line-height: 60px;
 
-    .container > div {
-        padding-left: 15px;
-        padding-right: 15px;
-        background-color: $gray-200;
+    width: 100%;
+    height: $footer-height;
+    line-height: $footer-height - 1px;
+
+    background-color: $gray-200;
+
+    @include media-breakpoint-down(sm) {
+        height: $footer-height-minimal;
+        line-height: $footer-height-minimal - 1px;
     }
 }
 

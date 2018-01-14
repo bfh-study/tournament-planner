@@ -1,12 +1,42 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-3">{% trans from "messages" %}Register{%endtrans %}</h1>
+  </div>
+</div>
+<div class="container">
   {{ form_start(form) }}
-    {{ form_row(form.username) }}
-    {{ form_row(form.email) }}
-    {{ form_row(form.plainPassword.first) }}
-    {{ form_row(form.plainPassword.second) }}
-
-    <button type="submit">Register!</button>
+  <div class="form-row">
+    <div class="col-6">
+      {{ form_row(form.username) }}
+      {{ form_widget(form.username,  {'attr': {'class': 'form-control'}}) }}
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-6">
+      {{ form_row(form.email) }}
+      {{ form_widget(form.email,  {'attr': {'class': 'form-control'}}) }}
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-6">
+      {{ form_row(form.plainPassword.first) }}
+      {{ form_widget(form.plainPassword.first,  {'attr': {'class': 'form-control'}}) }}
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-6">
+      {{ form_row(form.plainPassword.second) }}
+      {{ form_widget(form.plainPassword.second,  {'attr': {'class': 'form-control'}}) }}
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-6">
+      <button type="submit" class="btn btn-primary">Register!</button>
+    </div>
+  </div>
   {{ form_end(form) }}
+</div>
 {% endblock %}

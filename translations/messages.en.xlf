@@ -22,6 +22,10 @@
                 <source>Register</source>
                 <target>Register</target>
             </trans-unit>
+            <trans-unit id="text.login">
+                <source>Login</source>
+                <target>Login</target>
+            </trans-unit>
             <trans-unit id="error.login.invalid_credentials">
                 <source>Invalid credentials.</source>
                 <target>Invalid credentials.</target>

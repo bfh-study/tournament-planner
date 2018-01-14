@@ -1,10 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>{% trans from "messages" %}Create Tournament{% endtrans %}</h1>
-    <hr />
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-3">{% trans from "messages" %}Create Tournament{% endtrans %}</h1>
+    </div>
+</div>
+<div class="container">
     {{ form_start(form) }}
-    <h2>{% trans from "messages" %}Tournament{% endtrans %}</h2>
     <div class="form-row">
         <div class="col-6">
             {{ form_label(form.name) }}
@@ -29,6 +32,12 @@
             {{ form_widget(form.date) }}
         </div>
     </div>
-    {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+    <br />
+    <div class="form-row">
+        <div class="col-6">
+            {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+        </divY
+    </div>
     {{ form_end(form) }}
+</div>
 {% endblock %}
