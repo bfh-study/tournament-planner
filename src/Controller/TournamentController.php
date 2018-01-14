@@ -7,9 +7,11 @@ use App\Entity\Tournament;
 use App\Repository\TournamentRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
@@ -44,7 +46,16 @@ class TournamentController extends Controller
                 'choice_label' => 'name',
                 'multiple' => false,
             ))
-            ->add('date', DateType::class)
+            ->add('date', DateTimeType::class)
+            ->add('fields', IntegerType::class)
+            ->add('duration', IntegerType::class)
+            ->add('interruption', IntegerType::class)
+            ->add('backround', ChoiceType::class, array(
+                'choices' => array(
+                    'Yes' => true,
+                    'No' => false,
+                ),
+            ))
             ->add('save', SubmitType::class, array('label' => 'Create Tournament'))
             ->getForm();
 
