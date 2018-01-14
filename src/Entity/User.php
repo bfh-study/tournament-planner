@@ -19,9 +19,7 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\Id
      * @ORM\Column(type="string", length=60)
-     * @Assert\Email(
-     *      message = "The email '{{ value }}' is not a valid email.",
-     *      checkMX = true)
+     * @Assert\Email(checkMX = true)
      */
     private $email;
 
