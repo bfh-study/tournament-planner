@@ -27,12 +27,12 @@ class Schedule{
     private $field;
 
     /**
-     * @ORM\OneToMany(targetEntity="Team")
+     * @ORM\OneToMany(targetEntity="Team", mappedBy="schedule")
      */
     private $homeTeam;
 
     /**
-     * @ORM\OneToMany(targetEntity="Team")
+     * @ORM\OneToMany(targetEntity="Team", mappedBy="schedule")
      */
     private $awayTeam;
 
@@ -42,7 +42,7 @@ class Schedule{
     private $goalHome;
 
     /**
-     * @ORM\Clumn(type="integer")
+     * @ORM\Column(type="integer")
      */
     private $goalAway;
 

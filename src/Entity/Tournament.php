@@ -44,6 +44,8 @@ class Tournament extends AuditBase
      * @ORM\Column(type="string", length=64)
      */
     private $hash;
+
+    /**
      * @ORM\Column(type="integer")
      */
     private $fields;
@@ -156,6 +158,9 @@ class Tournament extends AuditBase
             $random = base64_encode(random_bytes(10));
             $this->hash = hash('ripemd256', $this->getName() . '.' . $random);
         }
+    }
+    
+    /**    
      * @return integer
      */
     public function getFields(){

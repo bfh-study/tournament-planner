@@ -9,11 +9,13 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Validator\Constraints\Date;
 
 class ScheduleController extends Controller {
 
     /**
-     * @Rout("/schedule/show", name="schedule_show")
+     * @Route("/schedule/show", name="schedule_show")
      */
     public function show(){
         $repo = $this->getDoctrine()->getRepository(Schedule::class);
@@ -31,7 +33,7 @@ class ScheduleController extends Controller {
         $schedule = new Schedule($security->getUser());
 
         $form = $this->createFormBuilder($schedule)
-            ->add('generate', SubmiType::class, array(
+            ->add('generate', SubmitType::class, array(
                 'label' => 'Create Schedule',
             ))
             ->getForm();
@@ -39,13 +41,13 @@ class ScheduleController extends Controller {
         $form->handleRequest($reguest);
 
         if($form->isSubmitted()){
-            $teams = generateTeams();
-            $date = new DateTime('2018-01-16 18:00');
-            generateSchedule($teams, $date, 5, 20, 2, false);
+            $teams = $this->generateTeams();
+            $date = new \DateTime('2018-01-16 18:00');
+            $this->generateSchedule($teams, $date, 5, 20, 2, false);
         }
 
-        return $this->render('schedule/createSchedule.html.twig' array(
-            'form' => $form-createView(),
+        return $this->render('schedule/createSchedule.html.twig', array(
+            'form' => $form->createView(),
         ));
     }
 
@@ -58,7 +60,9 @@ class ScheduleController extends Controller {
                             'FC Zürich',
                             'AC Milan',
                             'AS Roma',
-                            'SSC Napoli')
+                            'SSC Napoli');
+
+        return $teamList;
     }
 
     private function generateSchedule($teams, $date, $duration, $interruption, $fields, $hasBackround){
@@ -80,8 +84,6 @@ class ScheduleController extends Controller {
         $gameNumber = 1;
         $fieldCounter;
 
-        $newTime = date("Y-m-d H:i", $timestamp + 60*($interruption + $duration));
-        
         for($i=1;$i<=$groupSize-2; $i++){
             $home = $teams[$groupSize-1];
             $away = $teams[$i];
@@ -93,15 +95,16 @@ class ScheduleController extends Controller {
             }
 
             if(!($home == 'oddDummy' xor $away == 'oddDummy')) {
-                checkFields($fields, $fieldCounter);
-                if($gameNumber !=1) calcStartTime($duration, $interruption, $date, $fieldCounter);
+                $this->checkFields($fields, $fieldCounter);
+                if($gameNumber !=1) $this->calcStartTime($duration, $interruption, $date, $fieldCounter);
                 $startDate = $date->format("d.m.Y H:i");
                 $schedule = new Schedule();
-                $schedule->gameNumber = $gameNumber;
-                $schedule->field = $fieldCounter;
-                $schedule->date = $startDate;
-                $schedule->homeTeam = $home;
-                $schedule->awayTeam = $away;
+                $schedule->setGameNumber = $gameNumber;
+                $schedule->setField = $fieldCounter;
+                $schedule->setDate = $startDate;
+                $schedule->setHomeTeam = $home;
+                $schedule->setAwayTeam = $away;
+                $this->save($schedule);
                 array_push($scheduleList, $schedule);
                 $arrayCounter++;
                 $gameNumber++;
@@ -129,15 +132,16 @@ class ScheduleController extends Controller {
                 }
 
 
-                checkFields($fields, $fieldCounter);
-                if($gameNumber !=1) calcStartTime($duration, $interruption, $date, $fieldCounter);
+                $this->checkFields($fields, $fieldCounter);
+                if($gameNumber !=1) $this->calcStartTime($duration, $interruption, $date, $fieldCounter);
                 $startDate = $date->format("d.m.Y H:i");
                 $schedule = new Schedule();
-                $schedule->gameNumber = $gameNumber;
-                $schedule->field = $fieldCounter;
-                $schedule->date = $startDate;
-                $schedule->homeTeam = $home;
-                $schedule->awayTeam = $away;
+                $schedule->setGameNumber = $gameNumber;
+                $schedule->setField = $fieldCounter;
+                $schedule->setDate = $startDate;
+                $schedule->setHomeTeam = $home;
+                $schedule->setAwayTeam = $away;
+                $this->save($schedule);
                 array_push($scheduleList, $schedule);
                 $arrayCounter++;
                 $gameNumber++;
@@ -145,24 +149,23 @@ class ScheduleController extends Controller {
             }
         }
 
-        if($isBackround == 1){
+        if($hasBackround == 1){
             foreach($schedule as $row){
-                checkFields($fields, $fieldCounter);
-                calcStartTime($duration, $interruption, $date, $fieldCounter);
+                $this->checkFields($fields, $fieldCounter);
+                $this->calcStartTime($duration, $interruption, $date, $fieldCounter);
                 $startDate = $date->format("d.m.Y H:i");
                 $schedule = new Schedule();
-                $schedule->gameNumber = $gameNumber;
-                $schedule->field = $fieldCounter;
-                $schedule->date = $startDate;
-                $schedule->homeTeam = $away;
-                $schedule->awayTeam = $home;
+                $schedule->setGameNumber = $gameNumber;
+                $schedule->setField = $fieldCounter;
+                $schedule->setDate = $startDate;
+                $schedule->setHomeTeam = $away;
+                $schedule->setAwayTeam = $home;
+                $this->save($schedule);
                 array_push($scheduleList, $schedule);
                 $arrayCounter++;
                 $gameNumber++;
             }
         }
-
-        saveAll();
     }
 
     private function checkFields(&$fields, &$fieldCounter){
@@ -180,13 +183,15 @@ class ScheduleController extends Controller {
         if($fieldCounter == 1){
             $m = $duration+$interruption;
             $n = "PT".$m."M";
-            return $date->add(new DateInterval($n));
+            return $date->add(new \DateInterval($n));
         } else {
             return $date;
         }
     }
 
-    private function saveAll(){
-
+    private function save(Schedule $schedule){
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($schedule);
+        $em->flush();
     }
 }
