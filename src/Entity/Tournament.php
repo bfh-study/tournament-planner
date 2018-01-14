@@ -36,7 +36,7 @@ class Tournament extends AuditBase
     private $type;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $date;
 
@@ -44,6 +44,24 @@ class Tournament extends AuditBase
      * @ORM\Column(type="string", length=64)
      */
     private $hash;
+     * @ORM\Column(type="integer")
+     */
+    private $fields;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $duration;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $interruption;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $backround;
 
     public function __construct(UserInterface $creator) {
         $this->creator = $creator;
@@ -138,5 +156,58 @@ class Tournament extends AuditBase
             $random = base64_encode(random_bytes(10));
             $this->hash = hash('ripemd256', $this->getName() . '.' . $random);
         }
+     * @return integer
+     */
+    public function getFields(){
+        return $this->fields;
+    }
+
+    /**
+     * @param integer $fields
+     */
+    public function setFields($fields){
+        $this->fields = $fields;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getDuration(){
+        return $this->duration;
+    }
+
+    /**
+     * @param integer $duration
+     */
+    public function setDuration($duration){
+        $this->duration = $duration;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getInterruption(){
+        return $this->interruption;
+    }
+
+    /**
+     * @param integer $interruption
+     */
+    public function setInterruption($interruption){
+        $this->interruption = $interruption;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function hasBackround(){
+        return $this->backround;
+    }
+
+    /**
+     * @param boolean $backround
+     */
+    public function setBackround($backround){
+        $this->backround = $backround;
     }
 }
