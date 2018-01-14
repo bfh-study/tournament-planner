@@ -99,11 +99,11 @@ class ScheduleController extends Controller {
                 if($gameNumber !=1) $this->calcStartTime($duration, $interruption, $date, $fieldCounter);
                 $startDate = $date->format("d.m.Y H:i");
                 $schedule = new Schedule();
-                $schedule->setGameNumber = $gameNumber;
-                $schedule->setField = $fieldCounter;
-                $schedule->setDate = $startDate;
-                $schedule->setHomeTeam = $home;
-                $schedule->setAwayTeam = $away;
+                $schedule->setGameNumber($gameNumber);
+                $schedule->setField($fieldCounter);
+                $schedule->setDate($startDate);
+                $schedule->setHomeTeam($home);
+                $schedule->setAwayTeam($away);
                 $this->save($schedule);
                 array_push($scheduleList, $schedule);
                 $arrayCounter++;
@@ -136,11 +136,11 @@ class ScheduleController extends Controller {
                 if($gameNumber !=1) $this->calcStartTime($duration, $interruption, $date, $fieldCounter);
                 $startDate = $date->format("d.m.Y H:i");
                 $schedule = new Schedule();
-                $schedule->setGameNumber = $gameNumber;
-                $schedule->setField = $fieldCounter;
-                $schedule->setDate = $startDate;
-                $schedule->setHomeTeam = $home;
-                $schedule->setAwayTeam = $away;
+                $schedule->setGameNumber($gameNumber);
+                $schedule->setField($fieldCounter);
+                $schedule->setDate($startDate);
+                $schedule->setHomeTeam($home);
+                $schedule->setAwayTeam($away);
                 $this->save($schedule);
                 array_push($scheduleList, $schedule);
                 $arrayCounter++;
@@ -150,16 +150,16 @@ class ScheduleController extends Controller {
         }
 
         if($hasBackround == 1){
-            foreach($schedule as $row){
+            foreach($scheduleList as $row){
                 $this->checkFields($fields, $fieldCounter);
                 $this->calcStartTime($duration, $interruption, $date, $fieldCounter);
                 $startDate = $date->format("d.m.Y H:i");
                 $schedule = new Schedule();
-                $schedule->setGameNumber = $gameNumber;
-                $schedule->setField = $fieldCounter;
-                $schedule->setDate = $startDate;
-                $schedule->setHomeTeam = $away;
-                $schedule->setAwayTeam = $home;
+                $schedule->setGameNumber($gameNumber);
+                $schedule->setField($fieldCounter);
+                $schedule->setDate($startDate);
+                $schedule->setHomeTeam($row->getAwayTeam());
+                $schedule->setAwayTeam($row->getHomeTeam());
                 $this->save($schedule);
                 array_push($scheduleList, $schedule);
                 $arrayCounter++;
