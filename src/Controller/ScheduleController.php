@@ -3,47 +3,54 @@
 namespace App\Controller;
 
 use App\Entity\Schedule;
-use App\Repository\ScheduleRepository;
+use App\Entity\Team;
+use App\Entity\Tournament;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
-use Symfony\Component\Validator\Constraints\DateTime;
-use Symfony\Component\Validator\Constraints\Date;
 
 class ScheduleController extends Controller {
 
     /**
      * @Route("/schedule/show", name="schedule_show")
      */
-    public function show(){
-        $repo = $this->getDoctrine()->getRepository(Schedule::class);
-        $scheduleList = $repo->findSchedule();
+    public function show(Request $request, Security $security) {
+        $formEntity = new \StdClass();
+        $formEntity->tournament = null;
 
-        return $this->render('schedule/showSchedule.html.twig', array(
-            'scheduleList' => $scheduleList,
+        $form = $this->createSearchForm($formEntity, $security->getUser(), 'Show Schedule');
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $scheduleList = array();
+            $repo = $this->getDoctrine()->getRepository(Schedule::class);
+            $scheduleList = $repo->findBy(array('tournament' => $formEntity->tournament));
+            return $this->render(
+                'schedule/showSchedule.html.twig',
+                array('scheduleList' => $scheduleList, 'tournament' => $formEntity->tournament)
+            );
+        }
+
+        return $this->render('schedule/createSchedule.html.twig', array(
+            'form' => $form->createView(),
         ));
     }
 
     /**
      * @Route("/schedule/create", name="schedule_create")
      */
-    public function create(Request $reguest, Security $security){
-        $schedule = new Schedule($security->getUser());
+    public function create(Request $request, Security $security){
+        $formEntity = new \StdClass();
+        $formEntity->tournament = null;
 
-        $form = $this->createFormBuilder($schedule)
-            ->add('generate', SubmitType::class, array(
-                'label' => 'Create Schedule',
-            ))
-            ->getForm();
-        
-        $form->handleRequest($reguest);
+        $form = $this->createSearchForm($formEntity, $security->getUser(), 'Create Schedule');
+        $form->handleRequest($request);
 
-        if($form->isSubmitted()){
-            $teams = $this->generateTeams();
-            $date = new \DateTime('2018-01-16 18:00');
-            $this->generateSchedule($teams, $date, 5, 20, 2, false);
+        if($form->isSubmitted() && $form->isValid()){
+            $this->generateSchedule($formEntity->tournament);
         }
 
         return $this->render('schedule/createSchedule.html.twig', array(
@@ -54,36 +61,26 @@ class ScheduleController extends Controller {
     /**
      * helper function
      */
-    private function generateTeams(){
-        $teamList = array('FC Basel',
-                            'BSY YoungBoys',
-                            'FC Zürich',
-                            'AC Milan',
-                            'AS Roma',
-                            'SSC Napoli');
-
-        return $teamList;
-    }
-
-    private function generateSchedule($teams, $date, $duration, $interruption, $fields, $hasBackround){
+    private function generateSchedule(Tournament $tournament){
+        $teams = $tournament->getTeams()->getValues();
         // add dummy on the top, workaround for algo...
-        $dummy = 'dummy';
-        array_unshift($teams, $dummy);
+        array_unshift($teams, new Team(true));
         
         $groupSize = count($teams);
         $scheduleList = array();
         
         if($groupSize % 2 == 0){
-            $oddDummy = "oddDummy";
-            array_push($teams, $oddDummy);
+            $dummyTeam = new Team(true);
+            $dummyTeam->setName('oddDummy');
+            array_push($teams, $dummyTeam);
             $groupSize++;
         }
 
         $arrayCounter = 0;
         $n = $groupSize -2;
         $gameNumber = 1;
-        $fieldCounter;
-
+        $fieldCounter = 0;
+        $startDate = clone $tournament->getDate();
         for($i=1;$i<=$groupSize-2; $i++){
             $home = $teams[$groupSize-1];
             $away = $teams[$i];
@@ -94,11 +91,11 @@ class ScheduleController extends Controller {
                 $home = $tmp;
             }
 
-            if(!($home == 'oddDummy' xor $away == 'oddDummy')) {
-                $this->checkFields($fields, $fieldCounter);
-                if($gameNumber !=1) $this->calcStartTime($duration, $interruption, $date, $fieldCounter);
-                $startDate = $date->format("d.m.Y H:i");
-                $schedule = new Schedule();
+            if(!($home->getName() == 'oddDummy' && $home->isDummy() xor $away->getName() == 'oddDummy' && $away->isDummy())) {
+                $this->checkFields($tournament->getFields(), $fieldCounter);
+                if($gameNumber !=1)
+                    $this->calcStartTime($tournament,$startDate, $fieldCounter);
+                $schedule = new Schedule($tournament);
                 $schedule->setGameNumber($gameNumber);
                 $schedule->setField($fieldCounter);
                 $schedule->setDate($startDate);
@@ -132,10 +129,10 @@ class ScheduleController extends Controller {
                 }
 
 
-                $this->checkFields($fields, $fieldCounter);
-                if($gameNumber !=1) $this->calcStartTime($duration, $interruption, $date, $fieldCounter);
-                $startDate = $date->format("d.m.Y H:i");
-                $schedule = new Schedule();
+                $this->checkFields($tournament->getFields(), $fieldCounter);
+                if($gameNumber !=1)
+                    $this->calcStartTime($tournament, $startDate, $fieldCounter);
+                $schedule = new Schedule($tournament);
                 $schedule->setGameNumber($gameNumber);
                 $schedule->setField($fieldCounter);
                 $schedule->setDate($startDate);
@@ -149,12 +146,11 @@ class ScheduleController extends Controller {
             }
         }
 
-        if($hasBackround == 1){
+        if($tournament->hasBackround() == true){
             foreach($scheduleList as $row){
-                $this->checkFields($fields, $fieldCounter);
-                $this->calcStartTime($duration, $interruption, $date, $fieldCounter);
-                $startDate = $date->format("d.m.Y H:i");
-                $schedule = new Schedule();
+                $this->checkFields($tournament->getFields(), $fieldCounter);
+                $this->calcStartTime($tournament, $startDate, $fieldCounter);
+                $schedule = new Schedule($tournament);
                 $schedule->setGameNumber($gameNumber);
                 $schedule->setField($fieldCounter);
                 $schedule->setDate($startDate);
@@ -168,30 +164,42 @@ class ScheduleController extends Controller {
         }
     }
 
-    private function checkFields(&$fields, &$fieldCounter){
+    private function checkFields($fields, &$fieldCounter){
         if($fieldCounter == $fields){
             $fieldCounter = 1;
         } else {
             $fieldCounter++;
         }
-
-        return $fieldCounter;
     }
 
-    private function calcStartTime($duration, $interruption, $date, $fieldCounter){
-
+    private function calcStartTime(Tournament $tournament, \DateTime $startDate, $fieldCounter){
         if($fieldCounter == 1){
-            $m = $duration+$interruption;
-            $n = "PT".$m."M";
-            return $date->add(new \DateInterval($n));
-        } else {
-            return $date;
+            $startDate->add(
+                new \DateInterval("PT".($tournament->getDuration() + $tournament->getInterruption())."M")
+            );
         }
     }
 
     private function save(Schedule $schedule){
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($schedule);
-        $em->flush();
+        if (!($schedule->getHomeTeam()->isDummy() || $schedule->getAwayTeam()->isDummy())) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($schedule);
+            $em->flush();
+        }
+    }
+
+    private function createSearchForm($entity, $user, $label) {
+        $repo = $this->getDoctrine()->getRepository(Tournament::class);
+        return $this->createFormBuilder($entity)
+            ->add('tournament', EntityType::class, array(
+                'class' => Tournament::class,
+                'choice_label' => 'name',
+                'multiple' => false,
+                'data' => $repo->findAllActiveTournamentsByUser($user)
+            ))
+            ->add('generate', SubmitType::class, array(
+                'label' => $label,
+            ))
+            ->getForm();
     }
 }

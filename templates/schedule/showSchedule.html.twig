@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Schedule</h1>
+    <h1>Schedule - {{ tournament.name }}</h1>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -10,8 +10,8 @@
                 <th>Field</th>
                 <th>Home</th>
                 <th>Away</th>
-                <th></th>
-                <th></th>
+                <th>Goal Home</th>
+                <th>Goal Away</th>
             </tr>
         </thead>
         <tbody>
@@ -20,10 +20,10 @@
                     <th scope="row">{{ loop.index }}</th>
                     <td>{{ schedule.date|date("d.m.Y H:i") }}</td>
                     <td>{{ schedule.field }}</td>
-                    <td>{{ schedule.homeTeam }}</td>
-                    <td>{{ schedule.awayTeam }}</td>
-                    <td>{{ schedule.goalHome }}</td>
-                    <td>{{ schedule.goalAway }}</td>
+                    <td>{{ schedule.homeTeam.name }}</td>
+                    <td>{{ schedule.awayTeam.name }}</td>
+                    <td>{% if schedule.goalHome == null %}-{% else %} schedule.goalHome{% endif %}</td>
+                    <td>{% if schedule.goalAway == null %}-{% else %} schedule.goalAway{% endif %}</td>
                 </tr>
             {% endfor %}
         </tbody>
