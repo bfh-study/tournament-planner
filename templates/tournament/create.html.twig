@@ -29,12 +29,35 @@
     <div class="form-row">
         <div class="col-6">
             {{ form_label(form.date) }}
-            {{ form_widget(form.date) }}
+            {{ form_widget(form.date,  {'attr': {'type': 'date'}}) }}
         </div>
     </div>
-    <br />
     <div class="form-row">
         <div class="col-6">
+            {{ form_label(form.fields) }}
+            {{ form_widget(form.fields,  {'attr': {'class': 'form-control', 'min': '1', 'max': '10'}}) }}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-6">
+            {{ form_label(form.duration) }}
+            {{ form_widget(form.duration,  {'attr': {'class': 'form-control', 'min': '1', 'max': '90'}}) }}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-6">
+            {{ form_label(form.interruption) }}
+            {{ form_widget(form.interruption,  {'attr': {'class': 'form-control', 'min': '1', 'max': '15'}}) }}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-6">
+            {{ form_label(form.backround) }}
+            {{ form_widget(form.backround,  {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-6 text-right">
             {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
         </divY
     </div>
