@@ -7,13 +7,37 @@ use Doctrine\ORM\EntityRepository;
 
 class TournamentRepository extends EntityRepository
 {
-
-    public function findAllTournamentsByUser(User $user) {
-        return $this->createQueryBuilder('t')
+    public function findAllTodayTournamentsByUser(User $user) {
+        $list = $this->createQueryBuilder('t')
             ->where('t.creator = :user')
+            ->andWhere('t.date > CURRENT_DATE()')
             ->setParameter(':user', $user->getEmail())
             ->getQuery()
-            ->getArrayResult();
+            ->getResult();
+        $retList = array();
+        foreach ($list as $val) {
+            if ($val->getDate()->diff(new \DateTime())->days == 0) {
+                $retList[] = $val;
+            }
+        }
+        return $retList;
+    }
+
+    public function findAllPlanedTournamentsByUser(User $user) {
+        $list =  $this->createQueryBuilder('t')
+            ->where('t.creator = :user')
+            ->andWhere('t.date > CURRENT_DATE()')
+            ->setParameter(':user', $user->getEmail())
+            ->getQuery()
+            ->getResult();
+
+        $retList = array();
+        foreach ($list as $val) {
+            if ($val->getDate()->diff(new \DateTime())->days > 0) {
+                $retList[] = $val;
+            }
+        }
+        return $retList;
     }
 
     public function findAllActiveTournamentsByUser(User $user) {

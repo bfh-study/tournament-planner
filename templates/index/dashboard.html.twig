@@ -5,4 +5,12 @@
             <h1 class="display-3">{% trans from "messages" %}Welcome{% endtrans %} {{ app.user.username }}</h1>
         </div>
     </div>
+    <h2>{% trans from "messages" %}Tournaments today{% endtrans %}</h2>
+    {% if tournamentsToday == [] %}
+        <div class="alert alert-info">{% trans from "messages" %}No tournaments today{% endtrans %}</div>
+    {% else %}
+        {% include 'tournament/show.html.twig' with {'tournamentList': tournamentsToday} %}
+    {% endif %}
+    <h2>{% trans from "messages" %}My planned Tournaments{% endtrans %}</h2>
+    {% include 'tournament/show.html.twig' with {'tournamentList': planedTournaments} %}
 {% endblock %}
