@@ -73,12 +73,18 @@ class StandingController extends Controller {
      *     }
      * )
      */
-    public function showUpdateResultForm(Request $request, $tournamentId, $gameNumber)
+    public function showUpdateResultForm(Request $request, Security $security, $tournamentId, $gameNumber)
     {
         $repo = $this->getDoctrine()->getRepository(Schedule::class);
         $schedules = $repo->findBy(array('tournament' => $tournamentId, 'gameNumber' => $gameNumber));
         if (count($schedules) == 0) {
-            return $this->render('index.html.twig');
+            return $this->render('index/dashboard.html.twig');
+        } else {
+            foreach ($schedules as $val) {
+                if ($val->getTournament()->getCreator() != $security->getUser() || !$val->getTournament()->isToday()) {
+                    return $this->render('index/dashboard.html.twig');
+                }
+            }
         }
         $schedule = $schedules[0];
         $form = $this->updateResultForm($schedule);
@@ -88,6 +94,7 @@ class StandingController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $em->merge($schedule);
             $em->flush();
+            return $this->redirectToRoute('schedule_show', array('tournament' => $tournamentId));
         }
 
         return $this->render('schedule/update-schedule.html.twig', array(
@@ -97,8 +104,8 @@ class StandingController extends Controller {
 
     private function updateResultForm(Schedule $schedule) {
         return $this->createFormBuilder($schedule)
-            ->add('goalHome', IntegerType::class, array('data' => 0))
-            ->add('goalAway', IntegerType::class, array('data' => 0))
+            ->add('goalHome', IntegerType::class, array('data' => $schedule->getGoalHome()))
+            ->add('goalAway', IntegerType::class, array('data' => $schedule->getGoalAway()))
             ->add('generate', SubmitType::class, array('label' => 'Update Result',))
             ->getForm();
     }

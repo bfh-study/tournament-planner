@@ -31,6 +31,9 @@
                 <th>{% trans from "messages" %}Home{% endtrans %}</th>
                 <th>{% trans from "messages" %}Away{% endtrans %}</th>
                 <th>{% trans from "messages" %}Result{% endtrans %}</th>
+                {% if tournament.isToday == true %}
+                    <th>{% trans from "messages" %}Action{% endtrans %}</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -42,6 +45,11 @@
                     <td>{{ schedule.homeTeam.name }}</td>
                     <td>{{ schedule.awayTeam.name }}</td>
                     <td>{{schedule.goalHome}}:{{schedule.goalAway}}</td>
+                    {% if tournament.isToday == true %}
+                        <td>
+                            <a class="oi oi-pencil btn-sm" title="{% trans from "messages" %}Update Result{% endtrans %}" href="{{ path('standing_update_form', {'tournamentId': tournament.id, 'gameNumber': schedule.gameNumber }) }}" aria-hidden="true"></a>
+                        </td>
+                    {% endif %}
                 </tr>
             {% endfor %}
         </tbody>

@@ -16,7 +16,9 @@ class TournamentRepository extends EntityRepository
             ->getResult();
         $retList = array();
         foreach ($list as $val) {
-            if ($val->getDate()->diff(new \DateTime())->days == 0) {
+            $date = new \DateTime();
+            $date->setTime(0, 0, 0);
+            if ($val->getDate()->diff($date)->days == 0) {
                 $retList[] = $val;
             }
         }
