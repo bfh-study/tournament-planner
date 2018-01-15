@@ -1,0 +1,26 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Place</th>
+            <th>Date</th>
+            {% if showActive == true %}
+            <th>Active</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for tournament in tournamentList %}
+            <tr>
+                <th scope="row">{{ loop.index }}</th>
+                <td>{{ tournament.name }}</td>
+                <td>{{ tournament.place }}</td>
+                <td>{{ tournament.date|date("d.m.y") }}</td>
+                {% if showActive == true %}
+                    <td>{% if tournament.isactive == true %}{% trans from 'messages' %}True{% endtrans %}{% else %}{% trans from 'messages' %}False{% endtrans %}{% endif %}</td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

@@ -252,4 +252,12 @@ class Tournament extends AuditBase
     {
         return $this->teams;
     }
+
+    /**
+     * @return boolean
+     */
+    public function isActive()
+    {
+        return $this->date != null && $this->date > new \DateTime();
+    }
 }
