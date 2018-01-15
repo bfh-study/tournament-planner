@@ -2,11 +2,11 @@
     <thead>
         <tr>
             <th>#</th>
-            <th>Name</th>
-            <th>Place</th>
-            <th>Date</th>
+            <th>{% trans from "messages" %}Name{% endtrans %}</th>
+            <th>{% trans from "messages" %}Place{% endtrans %}</th>
+            <th>{% trans from "messages" %}Date{% endtrans %}</th>
             {% if showActive == true %}
-            <th>Active</th>
+            <th>{% trans from "messages" %}Active{% endtrans %}</th>
             {% endif %}
         </tr>
     </thead>

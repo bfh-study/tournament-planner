@@ -3,14 +3,13 @@
 {% block body %}
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-3">Select Tournament</h1>
+    <h1 class="display-3">{% trans from "messages" %}Select Tournament{% endtrans %}</h1>
   </div>
 </div>
 <div class="container">
 {{ form_start(form) }}
   <div class="form-row">
     <div class="col-6">
-      {{ form_label(form.tournament) }}
       {{ form_widget(form.tournament, {'attr': {'class': 'form-control'}}) }}
     </div>
   </div>

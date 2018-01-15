@@ -10,20 +10,20 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-sm fixed-top navbar-dark bg-dark" role="navigation">
-            <a class="navbar-brand app-title" href="/">Tournament Planner</a>
+            <a class="navbar-brand app-title" href="/">{% trans from "messages" %}Tournament Planner{% endtrans %}</a>
                 <div class="collapse navbar-collapse">
                 <div class="ml-auto">
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                     <ul class="nav navbar-nav">
-                        <li class="nav-item"><a class="nav-link {% if app.request.attributes.get('_route') == 'dashboard' %}active{% endif %}" href="{{ path('dashboard') }}">Dashboard</a></li>
-                        <li class="nav-item"><a class="nav-link {% if app.request.attributes.get('_route') == 'tournament_show' %}active{% endif %}" href="{{ path('tournament_show') }}">Tournament</a></li>
-                        <li class="nav-item"><a class="nav-link {% if app.request.attributes.get('_route') == 'schedule_show' %}active{% endif %}" href="{{ path('schedule_show') }}">Schedule</a></li>
-                        <li class="nav-item"><a class="nav-link {% if app.request.attributes.get('_route') == 'standing' %}active{% endif %}" href="{{ path('standing') }}">Standing</a></li>
+                        <li class="nav-item"><a class="nav-link {% if app.request.attributes.get('_route') == 'dashboard' %}active{% endif %}" href="{{ path('dashboard') }}">{% trans from "messages" %}Dashboard{% endtrans %}</a></li>
+                        <li class="nav-item"><a class="nav-link {% if app.request.attributes.get('_route') == 'tournament_show' %}active{% endif %}" href="{{ path('tournament_show') }}">{% trans from "messages" %}Tournaments{% endtrans %}</a></li>
+                        <li class="nav-item"><a class="nav-link {% if app.request.attributes.get('_route') == 'schedule_show' %}active{% endif %}" href="{{ path('schedule_show') }}">{% trans from "messages" %}Schedules{% endtrans %}</a></li>
+                        <li class="nav-item"><a class="nav-link {% if app.request.attributes.get('_route') == 'standing' %}active{% endif %}" href="{{ path('standing') }}">{% trans from "messages" %}Standings{% endtrans %}</a></li>
                         {% if is_granted('ROLE_ADMIN') %}
-                            <li class="nav-item"><a class="nav-link {% if app.request.attributes.get('_route') == 'tournament_create' %}active{% endif %}" href="{{ path('tournament_create') }}">Create</a></li>
+                            <li class="nav-item"><a class="nav-link {% if app.request.attributes.get('_route') == 'tournament_create' %}active{% endif %}" href="{{ path('tournament_create') }}">{% trans from "messages" %}Create{% endtrans %}</a></li>
                             <li class="nav-item"><a class="nav-link {% if app.request.attributes.get('_route') matches '@admin_.*@' %}active{% endif %}" href="{{ path('admin_index') }}">{% trans from "messages" %}Admin Area{% endtrans %}</a></li>
                         {% endif %}
-                        <li class="nav-item"><a class="nav-link" href="{{ path('logout') }}">Logout</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ path('logout') }}">{% trans from "messages" %}Logout{% endtrans %}</a></li>
                     </ul>
                 {% endif %}
                 </div>
