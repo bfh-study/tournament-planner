@@ -24,7 +24,7 @@ class TournamentController extends Controller
     public function show(Security $security)
     {
         $repo = $this->getDoctrine()->getRepository(Tournament::class);
-        $tournamentList = $repo->findAllTournamentsByUser($security->getUser());
+        $tournamentList = $repo->findBy(array('creator' => $security->getUser()), array('date' => 'DESC'));
 
         return $this->render('tournament/show.html.twig', array(
             'tournamentList' => $tournamentList,

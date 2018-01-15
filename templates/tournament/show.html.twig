@@ -1,20 +1,12 @@
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Place</th>
-            <th>Date</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for tournament in tournamentList %}
-            <tr>
-                <th scope="row">{{ loop.index }}</th>
-                <td>{{ tournament.name }}</td>
-                <td>{{ tournament.place }}</td>
-                <td>{{ tournament.date|date("d.m.y") }}</td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-3">{% trans from "messages" %}All Tournaments{% endtrans %}</h1>
+        </div>
+    </div>
+    <div class="container">
+        {% include 'tournament/table.html.twig' with {'tournamentList': tournamentList} %}
+    </div>
+{% endblock %}
+
