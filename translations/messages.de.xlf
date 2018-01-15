@@ -86,6 +86,10 @@
                 <source>My planned Tournaments</source>
                 <target>Meine geplante Turniere</target>
             </trans-unit>
+            <trans-unit id="dashboard.show_my_tournaments">
+                <source>You haven't created any tournaments yet!</source>
+                <target>Sie haben bisher noch keine Turniere ersellt!</target>
+            </trans-unit>
             <trans-unit id="tournament.tournaments">
                 <source>All Tournaments</source>
                 <target>Alle Turniere</target>
