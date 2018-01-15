@@ -11,7 +11,7 @@ class Schedule {
 
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Tournament")
+     * @ORM\ManyToOne(targetEntity="Tournament", inversedBy="schedules")
      * @ORM\JoinColumn(name="tournament", referencedColumnName="id")
      */
     private $tournament;
@@ -147,6 +147,9 @@ class Schedule {
      * @return integer
      */
     public function getGoalHome(){
+        if ($this->goalHome == null) {
+            return 0;
+        }
         return $this->goalHome;
     }
 
@@ -161,6 +164,9 @@ class Schedule {
      * @return integer
      */
     public function getGoalAway(){
+        if ($this->goalAway == null) {
+            return 0;
+        }
         return $this->goalAway;
     }
 

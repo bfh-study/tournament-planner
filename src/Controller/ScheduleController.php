@@ -49,7 +49,6 @@ class ScheduleController extends Controller {
 
         $form = $this->createSearchForm($formEntity, $security->getUser(), 'Create Schedule');
         $form->handleRequest($request);
-
         if($form->isSubmitted() && $form->isValid()){
             $this->generateSchedule($formEntity->tournament);
         }

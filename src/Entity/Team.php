@@ -23,46 +23,6 @@ class Team
     private $tournament;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $played;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $won;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $drawn;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $lost;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $goalsFor;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $goalsAgainst;
-
-    /**
-     * @var integer
-     */
-    private $differenz;
-
-    /**
-     * @var integer
-     */
-    private $points;
-
-    /**
      * @var boolean
      */
     private $isDummy;
