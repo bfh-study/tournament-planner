@@ -12,6 +12,7 @@
         {% else %}
             {% include 'tournament/table.html.twig' with {'tournamentList': tournamentsToday, 'showActive': false} %}
         {% endif %}
+        <br />
         <h2>{% trans from "messages" %}My planned Tournaments{% endtrans %}</h2>
         {% include 'tournament/table.html.twig' with {'tournamentList': planedTournaments, 'showActive': false} %}
     </div>

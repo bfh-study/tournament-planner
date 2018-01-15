@@ -3,7 +3,7 @@
 {% block body %}
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <h1 class="display-3">Schedule - {{ tournament.name }}</h1>
+        <h1 class="display-3">{% trans from "messages" %}Schedule{% endtrans %} - {{ tournament.name }}</h1>
     </div>
 </div>
 <div class="container">
@@ -26,11 +26,11 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Date</th>
-                <th>Field</th>
-                <th>Home</th>
-                <th>Away</th>
-                <th>Result</th>
+                <th>{% trans from "messages" %}Date{% endtrans %}</th>
+                <th>{% trans from "messages" %}Field{% endtrans %}</th>
+                <th>{% trans from "messages" %}Home{% endtrans %}</th>
+                <th>{% trans from "messages" %}Away{% endtrans %}</th>
+                <th>{% trans from "messages" %}Result{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
