@@ -90,6 +90,26 @@
                 <source>You haven't created any tournaments yet!</source>
                 <target>Sie haben bisher noch keine Turniere ersellt!</target>
             </trans-unit>
+            <trans-unit id="dashboard.shortcuts">
+                <source>Shortcuts</source>
+                <target>Verknüpfungen</target>
+            </trans-unit>
+            <trans-unit id="dashboard.shortcuts.tournament">
+                <source>Create Tournament</source>
+                <target>Turnier erstellen</target>
+            </trans-unit>
+            <trans-unit id="dashboard.shortcuts.schedule_create">
+                <source>Create Schedule</source>
+                <target>Spielplan erstellen</target>
+            </trans-unit>
+            <trans-unit id="dashboard.shortcuts.standing">
+                <source>Show Standings</source>
+                <target>Tabellen anzeigen</target>
+            </trans-unit>
+            <trans-unit id="dashboard.shortcuts.tournaments">
+                <source>Show Tournaments</source>
+                <target>Turniere anzeigen</target>
+            </trans-unit>
             <trans-unit id="tournament.tournaments">
                 <source>All Tournaments</source>
                 <target>Alle Turniere</target>

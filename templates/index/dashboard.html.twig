@@ -19,5 +19,28 @@
         {% else %}
             {% include 'tournament/table.html.twig' with {'tournamentList': planedTournaments, 'showActive': false} %}
         {% endif %}
+        <br />
+        <h2>{% trans from "messages" %}Shortcuts{% endtrans %}</h2>
+        <br />
+        <div class="row">
+            <div class="col-md-3 text-left">
+                <a class="btn btn-primary btn-lg" href="{{ path('tournament_create') }}" role="button">{% trans from "messages" %}Create Tournament{% endtrans %}</a>
+            </div>
+            <div class="col-md-3">
+                <a class="btn btn-primary btn-lg" href="{{ path('schedule_create') }}" role="button">{% trans from "messages" %}Create Schedule{% endtrans %}</a>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-3">
+                <a class="btn btn-primary btn-lg" href="{{ path('tournament_show') }}" role="button">{% trans from "messages" %}Show Tournaments{% endtrans %}</a>
+            </div>
+            <div class="col-md-3">
+                <a class="btn btn-primary btn-lg" href="{{ path('schedule_show') }}" role="button">{% trans from "messages" %}Show Schedule{% endtrans %}</a>
+            </div>
+            <div class="col-md-3">
+                <a class="btn btn-primary btn-lg" href="{{ path('standing') }}" role="button">{% trans from "messages" %}Show Standings{% endtrans %}</a>
+            </div>
+        </div>
     </div>
 {% endblock %}

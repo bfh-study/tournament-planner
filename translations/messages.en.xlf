@@ -90,6 +90,26 @@
                 <source>You haven't created any tournaments yet!</source>
                 <target>You haven't created any tournaments yet!</target>
             </trans-unit>
+            <trans-unit id="dashboard.shortcuts">
+                <source>Shortcuts</source>
+                <target>Shortcuts</target>
+            </trans-unit>
+            <trans-unit id="dashboard.shortcuts.tournament">
+                <source>Create Tournament</source>
+                <target>Create Tournament</target>
+            </trans-unit>
+            <trans-unit id="dashboard.shortcuts.schedule">
+                <source>Create Schedule</source>
+                <target>Create Schedule</target>
+            </trans-unit>
+            <trans-unit id="dashboard.shortcuts.standing">
+                <source>Show Standings</source>
+                <target>Show Standings</target>
+            </trans-unit>
+            <trans-unit id="dashboard.shortcuts.tournaments">
+                <source>Show Tournaments</source>
+                <target>Show Tournaments</target>
+            </trans-unit>
             <trans-unit id="tournament.tournaments">
                 <source>All Tournaments</source>
                 <target>All Tournaments</target>
