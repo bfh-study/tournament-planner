@@ -74,6 +74,11 @@ class Tournament extends AuditBase
     private $teams;
 
     /**
+     * @ORM\OneToMany(targetEntity="Schedule", mappedBy="tournament")
+     */
+    private $schedules;
+
+    /**
      * Tournament constructor.
      * @param UserInterface $creator
      */
@@ -251,6 +256,14 @@ class Tournament extends AuditBase
     public function getTeams()
     {
         return $this->teams;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getSchedules()
+    {
+        return $this->schedules;
     }
 
     /**
