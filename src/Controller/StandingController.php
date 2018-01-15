@@ -3,12 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Schedule;
-use App\Entity\Team;
 use App\Entity\Tournament;
 use App\Model\StandingCalculator;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;

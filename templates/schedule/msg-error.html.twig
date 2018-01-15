@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-3">{% trans from "messages" %}Schedule{% endtrans %} - {{ tournament.name }}</h1>
+    </div>
+</div>
+<div class="container">
+      <div class="alert alert-danger" role="alert">
+          {{ msg|trans }}
+          <a href="{{ path('schedule_show') }}">{% trans from "messages" %}Show schedules{% endtrans %}</a></div>
+</div>
+{% endblock %}

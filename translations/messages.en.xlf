@@ -190,6 +190,14 @@
                 <source>Result</source>
                 <target>Result</target>
             </trans-unit>
+            <trans-unit id="schedule.msg-error">
+                <source>Can not create schedule, it already exists.</source>
+                <target>Can not create schedule, it already exists.</target>
+            </trans-unit>
+            <trans-unit id="schedule.msg-error-show-schedules">
+                <source>Show schedules</source>
+                <target>Show Schedules</target>
+            </trans-unit>
             <trans-unit id="standing.show_standing">
                 <source>Show Standing</source>
                 <target>Show Standing</target>

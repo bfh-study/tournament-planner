@@ -25,7 +25,6 @@ class ScheduleController extends Controller {
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $scheduleList = array();
             $repo = $this->getDoctrine()->getRepository(Schedule::class);
             $scheduleList = $repo->findBy(array('tournament' => $formEntity->tournament));
             return $this->render('schedule/showSchedule.html.twig', array(
@@ -50,6 +49,11 @@ class ScheduleController extends Controller {
         $form = $this->createSearchForm($formEntity, $security->getUser(), 'Create Schedule');
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
+            if (count($formEntity->tournament->getSchedules()) > 0) {
+                return $this->render('schedule/msg-error.html.twig',
+                    array ('msg' => 'Can not create schedule, it already exists.', 'tournament' => $formEntity->tournament)
+                );
+            }
             $this->generateSchedule($formEntity->tournament);
         }
 
