@@ -16,17 +16,25 @@ use Symfony\Component\Security\Core\Security;
 class StandingController extends Controller {
 
     /**
-     * @Route("/standing/show", name="standing")
+     * @Route("/standing/show/{tournament}", name="standing", defaults={"tournament": 0})
      */
-    public function show(Request $request, Security $security)
+    public function show(Request $request, Security $security, $tournament)
     {
         $formEntity = new \StdClass();
         $formEntity->tournament = null;
 
+        if (isset($tournament) && $tournament > 0) {
+            $repoTournament = $this->getDoctrine()->getRepository(Tournament::class);
+            $formEntity->tournament = $repoTournament->find($tournament);
+            if ($formEntity->tournament != null && $formEntity->tournament->getCreator() != $security->getUser()) {
+                return $this->render('index/dashboard.html.twig');
+            }
+        }
+
         $form = $this->createSearchForm($formEntity, $security->getUser(), 'Show Standing');
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if($form->isSubmitted() && $form->isValid() || isset($tournament) && $tournament > 0) {
             $repo = $this->getDoctrine()->getRepository(Schedule::class);
             $schedules = $repo->findBy(array('tournament' => $formEntity->tournament));
 

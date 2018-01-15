@@ -194,6 +194,10 @@
                 <source>Can not create schedule, it already exists.</source>
                 <target>Can not create schedule, it already exists.</target>
             </trans-unit>
+            <trans-unit id="schedule.msg-error.can-not-find">
+                <source>Can not find schedule.</source>
+                <target>Can not find schedule.</target>
+            </trans-unit>
             <trans-unit id="schedule.msg-error-show-schedules">
                 <source>Show schedules</source>
                 <target>Show Schedules</target>

@@ -194,6 +194,10 @@
                 <source>Can not create schedule, it already exists.</source>
                 <target>Kann den Spielplan nicht erstellen, da dieser bereits exisiert.</target>
             </trans-unit>
+            <trans-unit id="schedule.msg-error.can-not-find">
+                <source>Can not find schedule.</source>
+                <target>Kann den Spielplan nicht finden.</target>
+            </trans-unit>
             <trans-unit id="schedule.msg-error-show-schedules">
                 <source>Show schedules</source>
                 <target>Spielpläne anzeigen</target>

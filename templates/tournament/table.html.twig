@@ -8,6 +8,9 @@
             {% if showActive == true %}
             <th>{% trans from "messages" %}Active{% endtrans %}</th>
             {% endif %}
+            {% if isToday == true %}
+                <th>{% trans from "messages" %}Action{% endtrans %}</th>
+            {% endif %}
         </tr>
     </thead>
     <tbody>
@@ -19,6 +22,12 @@
                 <td>{{ tournament.date|date("d.m.y") }}</td>
                 {% if showActive == true %}
                     <td>{% if tournament.isactive == true %}{% trans from 'messages' %}True{% endtrans %}{% else %}{% trans from 'messages' %}False{% endtrans %}{% endif %}</td>
+                {% endif %}
+                {% if isToday == true %}
+                    <td>
+                        <a class="oi oi-list btn-sm" title="{% trans from "messages" %}Show Schedule{% endtrans %}" href="{{ path('schedule_show', {'tournament': tournament.id }) }}" aria-hidden="true"></a>
+                        <a class="oi oi-target btn-sm" title="{% trans from "messages" %}Show Standing{% endtrans %}" href="{{ path('standing', {'tournament': tournament.id }) }}" aria-hidden="true"></a>
+                    </td>
                 {% endif %}
             </tr>
         {% endfor %}
