@@ -1,4 +1,8 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <h1>{% trans from "messages" %}Welcome{% endtrans %}</h1>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-3">{% trans from "messages" %}Welcome{% endtrans %} {{ app.user.username }}</h1>
+        </div>
+    </div>
 {% endblock %}

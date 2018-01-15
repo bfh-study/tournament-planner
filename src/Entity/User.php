@@ -19,6 +19,7 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\Id
      * @ORM\Column(type="string", length=60)
+     * @Assert\Email(checkMX = true)
      */
     private $email;
 

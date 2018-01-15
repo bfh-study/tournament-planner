@@ -9,32 +9,41 @@
         {% endblock %}
     </head>
     <body>
-        <div class="container">
-            <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-                <a class="navbar-brand app-title" href="/">Tournament Planner</a>
+        <nav class="navbar navbar-expand-sm fixed-top navbar-dark bg-dark" role="navigation">
+            <a class="navbar-brand app-title" href="/">Tournament Planner</a>
+                <div class="collapse navbar-collapse">
+                <div class="ml-auto">
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                    <ul class="navbar-nav">
+                    <ul class="nav navbar-nav">
                         <li class="nav-item"><a class="nav-link {% if app.request.attributes.get('_route') == 'dashboard' %}active{% endif %}" href="{{ path('dashboard') }}">Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link {% if app.request.attributes.get('_route') == 'tournament_show' %}active{% endif %}" href="{{ path('tournament_show') }}">Tournament</a></li>
+                        <li class="nav-item"><a class="nav-link {% if app.request.attributes.get('_route') == 'schedule_show' %}active{% endif %}" href="{{ path('schedule_show') }}">Schedule</a></li>
+                        <li class="nav-item"><a class="nav-link {% if app.request.attributes.get('_route') == 'standing' %}active{% endif %}" href="{{ path('standing') }}">Standing</a></li>
                         {% if is_granted('ROLE_ADMIN') %}
+                            <li class="nav-item"><a class="nav-link {% if app.request.attributes.get('_route') == 'tournament_create' %}active{% endif %}" href="{{ path('tournament_create') }}">Create</a></li>
                             <li class="nav-item"><a class="nav-link {% if app.request.attributes.get('_route') matches '@admin_.*@' %}active{% endif %}" href="{{ path('admin_index') }}">{% trans from "messages" %}Admin Area{% endtrans %}</a></li>
                         {% endif %}
                         <li class="nav-item"><a class="nav-link" href="{{ path('logout') }}">Logout</a></li>
                     </ul>
                 {% endif %}
-            </nav>
-            {% block body %}{% endblock %}
-        </div>
-        <footer class="sticky-footer">
-            <div class="container">
-                <div>
-                    <nav class="nav justify-content-end flex-column flex-sm-row">
-                        {% trans from "messages" %}Language{% endtrans %}
-                        <a class="text-xs-center nav-link" href="{{ path('locale', {'path': app.request.attributes.get('_route'), 'params': app.request.attributes.get('_route_params'), '_locale': 'en'}) }}">EN</a>
-                        <a class="text-xs-center nav-link" href="{{ path('locale', {'path': app.request.attributes.get('_route'), 'params': app.request.attributes.get('_route_params'), '_locale': 'de'}) }}">DE</a>
-                    </nav>
                 </div>
-            </div>
-        </footer>
+                </div>
+        </nav>
+        {% block body %}
+        {% endblock %}
+        <div class="content-wrapper">
+            <footer class="sticky-footer">
+                <div class="container">
+                    <div class="text-center">
+                        <nav class="nav justify-content-end flex-column flex-sm-row">
+                            {% trans from "messages" %}Language{% endtrans %}
+                            <a class="text-xs-center nav-link" href="{{ path('locale', {'path': app.request.attributes.get('_route'), 'params': app.request.attributes.get('_route_params'), '_locale': 'en'}) }}">EN</a>
+                            <a class="text-xs-center nav-link" href="{{ path('locale', {'path': app.request.attributes.get('_route'), 'params': app.request.attributes.get('_route_params'), '_locale': 'de'}) }}">DE</a>
+                        </nav>
+                    </div>
+                </div>
+            </footer>
+        </div>
         {% block javascripts %}
             {# <script src="{{ asset('js/main.js') }}"></script> #}
         {% endblock %}

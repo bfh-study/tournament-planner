@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(name="tournaments")
@@ -38,6 +39,7 @@ class Tournament extends AuditBase
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\DateTime()
      */
     private $date;
 

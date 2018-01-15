@@ -22,6 +22,10 @@
                 <source>Register</source>
                 <target>Registrieren</target>
             </trans-unit>
+            <trans-unit id="text.login">
+                <source>Login</source>
+                <target>Anmelden</target>
+            </trans-unit>
             <trans-unit id="error.login.invalid_credentials">
                 <source>Invalid credentials.</source>
                 <target>Ungültige Anmeldedaten.</target>

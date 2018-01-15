@@ -28,10 +28,11 @@ class ScheduleController extends Controller {
             $scheduleList = array();
             $repo = $this->getDoctrine()->getRepository(Schedule::class);
             $scheduleList = $repo->findBy(array('tournament' => $formEntity->tournament));
-            return $this->render(
-                'schedule/showSchedule.html.twig',
-                array('scheduleList' => $scheduleList, 'tournament' => $formEntity->tournament)
-            );
+            return $this->render('schedule/showSchedule.html.twig', array(
+                'form' => $form->createView(),
+                'scheduleList' => $scheduleList, 
+                'tournament' => $formEntity->tournament
+            ));
         }
 
         return $this->render('schedule/createSchedule.html.twig', array(
