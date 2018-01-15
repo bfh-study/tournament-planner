@@ -18,6 +18,7 @@
                         <li class="nav-item"><a class="nav-link {% if app.request.attributes.get('_route') == 'dashboard' %}active{% endif %}" href="{{ path('dashboard') }}">Dashboard</a></li>
                         <li class="nav-item"><a class="nav-link {% if app.request.attributes.get('_route') == 'tournament_show' %}active{% endif %}" href="{{ path('tournament_show') }}">Tournament</a></li>
                         <li class="nav-item"><a class="nav-link {% if app.request.attributes.get('_route') == 'schedule_show' %}active{% endif %}" href="{{ path('schedule_show') }}">Schedule</a></li>
+                        <li class="nav-item"><a class="nav-link {% if app.request.attributes.get('_route') == 'standing' %}active{% endif %}" href="{{ path('standing') }}">Standing</a></li>
                         {% if is_granted('ROLE_ADMIN') %}
                             <li class="nav-item"><a class="nav-link {% if app.request.attributes.get('_route') == 'tournament_create' %}active{% endif %}" href="{{ path('tournament_create') }}">Create</a></li>
                             <li class="nav-item"><a class="nav-link {% if app.request.attributes.get('_route') matches '@admin_.*@' %}active{% endif %}" href="{{ path('admin_index') }}">{% trans from "messages" %}Admin Area{% endtrans %}</a></li>

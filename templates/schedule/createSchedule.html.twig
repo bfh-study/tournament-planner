@@ -3,12 +3,22 @@
 {% block body %}
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-
+    <h1 class="display-3">Select Tournament</h1>
   </div>
 </div>
 <div class="container">
-  {{ form_start(form) }}
-  {{ form_widget(form) }}
-  {{ form_end(form) }}
+{{ form_start(form) }}
+  <div class="form-row">
+    <div class="col-6">
+      {{ form_label(form.tournament) }}
+      {{ form_widget(form.tournament, {'attr': {'class': 'form-control'}}) }}
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-6">
+          {{ form_widget(form.generate, {'attr': {'class': 'btn btn-primary'}}) }}    
+    </div>
+  </div>
+{{ form_end(form) }}
 </div>
 {% endblock %}
