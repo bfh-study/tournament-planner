@@ -10,9 +10,9 @@
         {% if tournamentsToday == [] %}
             <div class="alert alert-info">{% trans from "messages" %}No tournaments today{% endtrans %}</div>
         {% else %}
-            {% include 'tournament/table.html.twig' with {'tournamentList': tournamentsToday} %}
+            {% include 'tournament/table.html.twig' with {'tournamentList': tournamentsToday, 'showActive': false} %}
         {% endif %}
         <h2>{% trans from "messages" %}My planned Tournaments{% endtrans %}</h2>
-        {% include 'tournament/table.html.twig' with {'tournamentList': planedTournaments} %}
+        {% include 'tournament/table.html.twig' with {'tournamentList': planedTournaments, 'showActive': false} %}
     </div>
 {% endblock %}

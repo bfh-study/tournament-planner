@@ -6,7 +6,7 @@
         </div>
     </div>
     <div class="container">
-        {% include 'tournament/table.html.twig' with {'tournamentList': tournamentList} %}
+        {% include 'tournament/table.html.twig' with {'tournamentList': tournamentList, 'showActive': true} %}
     </div>
 {% endblock %}
 
