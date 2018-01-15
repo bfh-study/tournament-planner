@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Tournament;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 
 class IndexController extends Controller {
 
@@ -34,7 +36,13 @@ class IndexController extends Controller {
     /**
      * @Route("/dashboard", name="dashboard")
      */
-    public function dashboard() {
-        return $this->render('index/dashboard.html.twig');
+    public function dashboard(Security $security) {
+        $repo = $this->getDoctrine()->getRepository(Tournament::class);
+        $tournamentList = $repo->findAllPlanedTournamentsByUser($security->getUser());
+        $tournamentsToday = $repo->findAllTodayTournamentsByUser($security->getUser());
+        return $this->render(
+            'index/dashboard.html.twig',
+            array('planedTournaments' => $tournamentList, 'tournamentsToday' => $tournamentsToday)
+        );
     }
 }

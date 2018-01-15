@@ -1,25 +1,20 @@
-{% extends 'base.html.twig' %}
-
-{% block body %}
-    <h1>My Tournaments</h1>
-    <table class="table table-striped">
-        <thead>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Place</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tournament in tournamentList %}
             <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Place</th>
-                <th>Date</th>
+                <th scope="row">{{ loop.index }}</th>
+                <td>{{ tournament.name }}</td>
+                <td>{{ tournament.place }}</td>
+                <td>{{ tournament.date|date("d.m.y") }}</td>
             </tr>
-        </thead>
-        <tbody>
-            {% for tournament in tournamentList %}
-                <tr>
-                    <th scope="row">{{ loop.index }}</th>
-                    <td>{{ tournament.name }}</td>
-                    <td>{{ tournament.place }}</td>
-                    <td>{{ tournament.date|date("d.m.y") }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-{% endblock %}
+        {% endfor %}
+    </tbody>
+</table>
