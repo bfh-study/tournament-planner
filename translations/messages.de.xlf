@@ -202,6 +202,10 @@
                 <source>Show schedules</source>
                 <target>Spielpläne anzeigen</target>
             </trans-unit>
+            <trans-unit id="standing.title">
+                <source>Standing</source>
+                <target>Tabelle</target>
+            </trans-unit>
             <trans-unit id="standing.show_standing">
                 <source>Show Standing</source>
                 <target>Tabelle anzeigen</target>
@@ -289,6 +293,22 @@
             <trans-unit id="nav.logout">
                 <source>Logout</source>
                 <target>Abmelden</target>
+            </trans-unit>
+            <trans-unit id="action.copyLink">
+                <source>Copy Link</source>
+                <target>Link kopieren</target>
+            </trans-unit>
+            <trans-unit id="modal.clipboard">
+                <source>Clipboard</source>
+                <target>Clipboard</target>
+            </trans-unit>
+            <trans-unit id="modal.ChangedResultTitle">
+                <source>Result Changed</source>
+                <target>Resultat hat gewechselt!</target>
+            </trans-unit>
+            <trans-unit id="modal.Result">
+                <source>Result</source>
+                <target>Resultat</target>
             </trans-unit>
         </body>
     </file>

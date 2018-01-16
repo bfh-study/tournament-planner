@@ -32,7 +32,7 @@ class StandingCalculator
             if ($goalHome > $goalAway) {
                 $homePoints = 3;
             } elseif ($goalHome < $goalAway) {
-                $awayTeam = 3;
+                $awayPoints = 3;
             } else {
                 $homePoints = 1;
                 $awayPoints = 1;

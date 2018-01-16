@@ -49,7 +49,7 @@ class StandingController extends Controller {
                     $array_goalsFor[$key] = $row->getGoalsFor();
                     $array_goalAgainst[$key] = $row->getGoalsAgainst();
                 }
-                array_multisort($array_points, SORT_DESC, $array_differenz, SORT_ASC, $array_goalsFor, SORT_DESC, $array_goalAgainst, SORT_ASC, $standings);
+                array_multisort($array_points, SORT_DESC, $array_differenz, SORT_DESC, $array_goalsFor, SORT_DESC, $array_goalAgainst, SORT_ASC, $standings);
 
             }
             return $this->render('standings/standings.html.twig', array(

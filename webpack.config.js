@@ -12,6 +12,7 @@ Encore
 
     // uncomment to define the assets of the project
     .addEntry('js/global', './assets/js/global.js')
+    .addEntry('js/dashboard', './assets/js/dashboard.js')
     .addStyleEntry('css/app', './assets/css/global.scss')
     .enableSassLoader()
     .autoProvidejQuery()

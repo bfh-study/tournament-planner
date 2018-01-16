@@ -202,6 +202,10 @@
                 <source>Show schedules</source>
                 <target>Show Schedules</target>
             </trans-unit>
+            <trans-unit id="standing.title">
+                <source>Standing</source>
+                <target>Standing</target>
+            </trans-unit>
             <trans-unit id="standing.show_standing">
                 <source>Show Standing</source>
                 <target>Show Standing</target>
@@ -216,7 +220,7 @@
             </trans-unit>
             <trans-unit id="standing.won">
                 <source>Won</source>
-                <target>Siege</target>
+                <target>Won</target>
             </trans-unit>
             <trans-unit id="standing.drawn">
                 <source>Drawn</source>
@@ -228,7 +232,7 @@
             </trans-unit>
             <trans-unit id="standing.goals">
                 <source>Goals</source>
-                <target>Tore</target>
+                <target>Goals</target>
             </trans-unit>
             <trans-unit id="standing.differenz">
                 <source>Dif.</source>
@@ -289,6 +293,22 @@
             <trans-unit id="nav.logout">
                 <source>Logout</source>
                 <target>Logout</target>
+            </trans-unit>
+            <trans-unit id="action.copyLink">
+                <source>Copy Link</source>
+                <target>Copy Link</target>
+            </trans-unit>
+            <trans-unit id="modal.clipboard">
+                <source>Clipboard</source>
+                <target>Clipboard</target>
+            </trans-unit>
+            <trans-unit id="modal.ChangedResultTitle">
+                <source>Result Changed</source>
+                <target>Result Changed</target>
+            </trans-unit>
+            <trans-unit id="modal.Result">
+                <source>Result</source>
+                <target>Result</target>
             </trans-unit>
         </body>
     </file>
