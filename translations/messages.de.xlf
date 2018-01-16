@@ -202,6 +202,10 @@
                 <source>Show schedules</source>
                 <target>Spielpläne anzeigen</target>
             </trans-unit>
+            <trans-unit id="standing.title">
+                <source>Standing</source>
+                <target>Tabelle</target>
+            </trans-unit>
             <trans-unit id="standing.show_standing">
                 <source>Show Standing</source>
                 <target>Tabelle anzeigen</target>

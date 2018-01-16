@@ -202,6 +202,10 @@
                 <source>Show schedules</source>
                 <target>Show Schedules</target>
             </trans-unit>
+            <trans-unit id="standing.title">
+                <source>Standing</source>
+                <target>Standing</target>
+            </trans-unit>
             <trans-unit id="standing.show_standing">
                 <source>Show Standing</source>
                 <target>Show Standing</target>
