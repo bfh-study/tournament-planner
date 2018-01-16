@@ -290,6 +290,22 @@
                 <source>Logout</source>
                 <target>Logout</target>
             </trans-unit>
+            <trans-unit id="action.copyLink">
+                <source>Copy Link</source>
+                <target>Copy Link</target>
+            </trans-unit>
+            <trans-unit id="modal.clipboard">
+                <source>Clipboard</source>
+                <target>Clipboard</target>
+            </trans-unit>
+            <trans-unit id="modal.ChangedResultTitle">
+                <source>Result Changed</source>
+                <target>Result Changed</target>
+            </trans-unit>
+            <trans-unit id="modal.Result">
+                <source>Result</source>
+                <target>Result</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
