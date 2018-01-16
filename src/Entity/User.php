@@ -12,9 +12,14 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class User implements UserInterface, \Serializable
 {
+    const ROLE_USER = 'ROLE_USER';
+
+    const ROLE_ADMIN = 'ROLE_ADMIN';
+
     /**
      * @ORM\Id
      * @ORM\Column(type="string", length=60)
+     * @Assert\Email(checkMX = true)
      */
     private $email;
 
@@ -35,6 +40,11 @@ class User implements UserInterface, \Serializable
     private $plainPassword;
 
     /**
+     * @ORM\Column(name="role", type="string", length=10)
+     */
+    private $role;
+
+    /**
      * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
@@ -42,6 +52,7 @@ class User implements UserInterface, \Serializable
     public function __construct()
     {
         $this->isActive = true;
+        $this->role = self::ROLE_USER;
     }
 
     /**
@@ -122,6 +133,26 @@ class User implements UserInterface, \Serializable
     }
 
     /**
+     * Set new role
+     *
+     * @param string $role
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+    }
+
+    /**
+     * Set if user is active
+     *
+     * @param boolean $isActive
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+    }
+
+    /**
      * Returns the roles granted to the user.
      *
      * <code>
@@ -139,7 +170,7 @@ class User implements UserInterface, \Serializable
      */
     public function getRoles()
     {
-        return array('ROLE_USER');
+        return array($this->role);
     }
 
     /**
@@ -176,7 +207,7 @@ class User implements UserInterface, \Serializable
         return serialize(array(
             $this->email,
             $this->username,
-            $this->password,
+            $this->password
         ));
     }
 

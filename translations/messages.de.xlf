@@ -1,0 +1,315 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="text.welcome">
+                <source>Welcome</source>
+                <target>Willkommen</target>
+            </trans-unit>
+            <trans-unit id="text.language">
+                <source>Language</source>
+                <target>Sprache</target>
+            </trans-unit>
+            <trans-unit id="text.welcome_message">
+                <source>Welcome to TP!</source>
+                <target>Willkommen beim Turnierplanner!</target>
+            </trans-unit>
+            <trans-unit id="text.welcome_sub_message">
+                <source>Plan your tournaments</source>
+                <target>Plane deine Turniere</target>
+            </trans-unit>
+            <trans-unit id="text.register">
+                <source>Register</source>
+                <target>Registrieren</target>
+            </trans-unit>
+            <trans-unit id="text.login">
+                <source>Login</source>
+                <target>Anmelden</target>
+            </trans-unit>
+            <trans-unit id="error.login.invalid_credentials">
+                <source>Invalid credentials.</source>
+                <target>Ungültige Anmeldedaten.</target>
+            </trans-unit>
+            <trans-unit id="error.403.title">
+                <source>Ups! - Access denied</source>
+                <target>Ups! - Zugang verweigert</target>
+            </trans-unit>
+            <trans-unit id="error.403.info">
+                <source>You have not enough rights</source>
+                <target>Du hast nicht genug Rechte</target>
+            </trans-unit>
+            <trans-unit id="error.403.link">
+                <source>return to dashboard</source>
+                <target>Zurück zum Dashboard</target>
+            </trans-unit>
+            <trans-unit id="form.name">
+                <source>Name</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="form.username">
+                <source>Username</source>
+                <target>Benutzername</target>
+            </trans-unit>
+            <trans-unit id="form.password">
+                <source>Password</source>
+                <target>Passwort</target>
+            </trans-unit>
+            <trans-unit id="register.team.add">
+                <source>Add Team</source>
+                <target>Team hinzufügen</target>
+            </trans-unit>
+            <trans-unit id="register.team.success">
+                <source>Congratulation! You registered your team successful.</source>
+                <target>Gratulation! Du hast dein Team erfolgreich registriert.</target>
+            </trans-unit>
+            <trans-unit id="register.team.not_found">
+                <source>No active tournament found</source>
+                <target>Kein aktives Turnier gefunden</target>
+            </trans-unit>
+            <trans-unit id="register.team.already_registered">
+                <source>Your team is already registered!</source>
+                <target>Dein Team ist bereits registriert!</target>
+            </trans-unit>
+            <trans-unit id="register.team.already_exists">
+                <source>Team already exists!</source>
+                <target>Team existiert bereits!</target>
+            </trans-unit>
+            <trans-unit id="dashboard.tournaments_today">
+                <source>Tournaments today</source>
+                <target>Heutige Turniere</target>
+            </trans-unit>
+            <trans-unit id="dashboard.no_tournaments_today">
+                <source>No tournaments today</source>
+                <target>Heute finden keine Turniere statt</target>
+            </trans-unit>
+            <trans-unit id="dashboard.my_tournaments">
+                <source>My planned Tournaments</source>
+                <target>Meine geplante Turniere</target>
+            </trans-unit>
+            <trans-unit id="dashboard.show_my_tournaments">
+                <source>You haven't created any tournaments yet!</source>
+                <target>Sie haben bisher noch keine Turniere ersellt!</target>
+            </trans-unit>
+            <trans-unit id="dashboard.shortcuts">
+                <source>Shortcuts</source>
+                <target>Verknüpfungen</target>
+            </trans-unit>
+            <trans-unit id="dashboard.shortcuts.tournament">
+                <source>Create Tournament</source>
+                <target>Turnier erstellen</target>
+            </trans-unit>
+            <trans-unit id="dashboard.shortcuts.schedule_create">
+                <source>Create Schedule</source>
+                <target>Spielplan erstellen</target>
+            </trans-unit>
+            <trans-unit id="dashboard.shortcuts.standing">
+                <source>Show Standings</source>
+                <target>Tabellen anzeigen</target>
+            </trans-unit>
+            <trans-unit id="dashboard.shortcuts.tournaments">
+                <source>Show Tournaments</source>
+                <target>Turniere anzeigen</target>
+            </trans-unit>
+            <trans-unit id="tournament.tournaments">
+                <source>All Tournaments</source>
+                <target>Alle Turniere</target>
+            </trans-unit>
+            <trans-unit id="tournament.name">
+                <source>Name</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="tournament.place">
+                <source>Place</source>
+                <target>Ort</target>
+            </trans-unit>
+            <trans-unit id="tournament.date">
+                <source>Date</source>
+                <target>Datum</target>
+            </trans-unit>
+            <trans-unit id="tournament.active">
+                <source>Active</source>
+                <target>Aktiv</target>
+            </trans-unit>
+            <trans-unit id="tournament.create_tournament">
+                <source>Create Tournament</source>
+                <target>Turnier erstellen</target>
+            </trans-unit>
+            <trans-unit id="tournament.type">
+                <source>Type</source>
+                <target>Sportart</target>
+            </trans-unit>
+            <trans-unit id="tournament.fields">
+                <source>Fields</source>
+                <target>Felder</target>
+            </trans-unit>
+            <trans-unit id="tournament.duration">
+                <source>Duration</source>
+                <target>Dauer</target>
+            </trans-unit>
+            <trans-unit id="tournament.interruption">
+                <source>Interruption</source>
+                <target>Pause</target>
+            </trans-unit>
+            <trans-unit id="tournament.backround">
+                <source>Backround</source>
+                <target>Rückrunde</target>
+            </trans-unit>
+            <trans-unit id="tournament.create_tournament_button">
+                <source>Create Tournament</source>
+                <target>Turnier erstellen</target>
+            </trans-unit>
+            <trans-unit id="schedule.create.title">
+                <source>Select Tournament</source>
+                <target>Wähle ein Turnier</target>
+            </trans-unit>
+            <trans-unit id="schedule.create_schedule">
+                <source>Create Schedule</source>
+                <target>Spielplan erstellen</target>
+            </trans-unit>
+            <trans-unit id="schedule.show_schedule">
+                <source>Show Schedule</source>
+                <target>Spielplan anzeigen</target>
+            </trans-unit>
+            <trans-unit id="schedule.show.title">
+                <source>Schedule</source>
+                <target>Spielplan</target>
+            </trans-unit>
+            <trans-unit id="schedule.show.field">
+                <source>Field</source>
+                <target>Feld</target>
+            </trans-unit>
+            <trans-unit id="schedule.show.home">
+                <source>Home</source>
+                <target>Heim</target>
+            </trans-unit>
+            <trans-unit id="schedule.show.away">
+                <source>Away</source>
+                <target>Gast</target>
+            </trans-unit>
+            <trans-unit id="schedule.show.result">
+                <source>Result</source>
+                <target>Resultat</target>
+            </trans-unit>
+            <trans-unit id="schedule.msg-error">
+                <source>Can not create schedule, it already exists.</source>
+                <target>Kann den Spielplan nicht erstellen, da dieser bereits exisiert.</target>
+            </trans-unit>
+            <trans-unit id="schedule.msg-error.can-not-find">
+                <source>Can not find schedule.</source>
+                <target>Kann den Spielplan nicht finden.</target>
+            </trans-unit>
+            <trans-unit id="schedule.msg-error-show-schedules">
+                <source>Show schedules</source>
+                <target>Spielpläne anzeigen</target>
+            </trans-unit>
+            <trans-unit id="standing.title">
+                <source>Standing</source>
+                <target>Tabelle</target>
+            </trans-unit>
+            <trans-unit id="standing.show_standing">
+                <source>Show Standing</source>
+                <target>Tabelle anzeigen</target>
+            </trans-unit>
+            <trans-unit id="standing.team">
+                <source>Team</source>
+                <target>Mannschaft</target>
+            </trans-unit>
+            <trans-unit id="standing.played">
+                <source>Played</source>
+                <target>Spiele</target>
+            </trans-unit>
+            <trans-unit id="standing.won">
+                <source>Won</source>
+                <target>Siege</target>
+            </trans-unit>
+            <trans-unit id="standing.drawn">
+                <source>Drawn</source>
+                <target>Unentschieden</target>
+            </trans-unit>
+            <trans-unit id="standing.lost">
+                <source>Lost</source>
+                <target>Verloren</target>
+            </trans-unit>
+            <trans-unit id="standing.goals">
+                <source>Goals</source>
+                <target>Tore</target>
+            </trans-unit>
+            <trans-unit id="standing.differenz">
+                <source>Dif.</source>
+                <target>Dif.</target>
+            </trans-unit>
+            <trans-unit id="standing.points">
+                <source>Points</source>
+                <target>Punkte</target>
+            </trans-unit>
+            <trans-unit id="admin.title">
+                <source>Admin Area</source>
+                <target>Administrationsbereich</target>
+            </trans-unit>
+            <trans-unit id="admin.active_users">
+                <source>All active Users</source>
+                <target>Alle aktiven Benutzer</target>
+            </trans-unit>
+            <trans-unit id="admin.mail">
+                <source>Mail</source>
+                <target>E-Mail</target>
+            </trans-unit>
+            <trans-unit id="admin.role">
+                <source>Role</source>
+                <target>Rolle</target>
+            </trans-unit>
+            <trans-unit id="admin.action">
+                <source>Action</source>
+                <target>Aktion</target>
+            </trans-unit>
+            <trans-unit id="nav.title">
+                <source>Tournament Planner</source>
+                <target>Turnierplanner</target>
+            </trans-unit>
+            <trans-unit id="nav.dashboard">
+                <source>Dashboard</source>
+                <target>Startseite</target>
+            </trans-unit>
+            <trans-unit id="nav.tournaments">
+                <source>Tournaments</source>
+                <target>Turniere</target>
+            </trans-unit>
+            <trans-unit id="nav.schedules">
+                <source>Schedules</source>
+                <target>Spielpläne</target>
+            </trans-unit>
+            <trans-unit id="nav.standings">
+                <source>Standings</source>
+                <target>Tabellen</target>
+            </trans-unit>
+            <trans-unit id="nav.create">
+                <source>Create</source>
+                <target>Erstellen</target>
+            </trans-unit>
+            <trans-unit id="nav.admin">
+                <source>Admin Area</source>
+                <target>Administrationsbereich</target>
+            </trans-unit>
+            <trans-unit id="nav.logout">
+                <source>Logout</source>
+                <target>Abmelden</target>
+            </trans-unit>
+            <trans-unit id="action.copyLink">
+                <source>Copy Link</source>
+                <target>Link kopieren</target>
+            </trans-unit>
+            <trans-unit id="modal.clipboard">
+                <source>Clipboard</source>
+                <target>Clipboard</target>
+            </trans-unit>
+            <trans-unit id="modal.ChangedResultTitle">
+                <source>Result Changed</source>
+                <target>Resultat hat gewechselt!</target>
+            </trans-unit>
+            <trans-unit id="modal.Result">
+                <source>Result</source>
+                <target>Resultat</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

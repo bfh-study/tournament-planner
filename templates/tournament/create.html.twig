@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-3">{% trans from "messages" %}Create Tournament{% endtrans %}</h1>
+    </div>
+</div>
+<div class="container">
+    {{ form_start(form) }}
+    <div class="form-row">
+        <div class="col-6">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name,  {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-6">
+            {{ form_label(form.place) }}
+            {{ form_widget(form.place,  {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-6">
+            {{ form_label(form.type) }}
+            {{ form_widget(form.type,  {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-6">
+            {{ form_label(form.date) }}
+            {{ form_widget(form.date) }}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-6">
+            {{ form_label(form.fields) }}
+            {{ form_widget(form.fields,  {'attr': {'class': 'form-control', 'min': '1', 'max': '10'}}) }}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-6">
+            {{ form_label(form.duration) }}
+            {{ form_widget(form.duration,  {'attr': {'class': 'form-control', 'min': '1', 'max': '90'}}) }}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-6">
+            {{ form_label(form.interruption) }}
+            {{ form_widget(form.interruption,  {'attr': {'class': 'form-control', 'min': '1', 'max': '15'}}) }}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-6">
+            {{ form_label(form.backround) }}
+            {{ form_widget(form.backround,  {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-6 text-right">
+            {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+        </div>
+    </div>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

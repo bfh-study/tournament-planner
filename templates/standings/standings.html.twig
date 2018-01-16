@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-3">{% trans from "messages" %}Standing{% endtrans %} - {{ tournament.name }}</h1>
+    </div>
+</div>
+<div class="container">
+{{ form_start(form) }}
+  <div class="form-row">
+    <div class="col-6">
+      {{ form_widget(form.tournament, {'attr': {'class': 'form-control'}}) }}
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-6">
+          {{ form_widget(form.generate, {'attr': {'class': 'btn btn-primary'}}) }}    
+    </div>
+  </div>
+{{ form_end(form) }}
+</div>
+<br />
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>{% trans from "messages" %}Team{% endtrans %}</th>
+                <th>{% trans from "messages" %}Played{% endtrans %}</th>
+                <th>{% trans from "messages" %}Won{% endtrans %}</th>
+                <th>{% trans from "messages" %}Drawn{% endtrans %}</th>
+                <th>{% trans from "messages" %}Lost{% endtrans %}</th>
+                <th>{% trans from "messages" %}Goals{% endtrans %}</th>
+                <th>{% trans from "messages" %}Dif.{% endtrans %}</th>
+                <th>{% trans from "messages" %}Points{% endtrans %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for standing in standings %}
+                <tr>
+                    <th scope="row">{{ loop.index }}</th>
+                    <td>{{ standing.team.name }}</td>
+                    <td>{{ standing.played }}</td>
+                    <td>{{ standing.won }}</td>
+                    <td>{{ standing.drawn }}</td>
+                    <td>{{ standing.lost }}</td>
+                    <td>{{ standing.goalsFor}}:{{ standing.goalsAgainst }}</td>
+                    <td>{{ standing.diff }}</td>
+                    <td>{{ standing.points }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

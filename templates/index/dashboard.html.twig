@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-3">{% trans from "messages" %}Welcome{% endtrans %} {{ app.user.username }}</h1>
+        </div>
+    </div>
+    <div class="container">
+        <h2>{% trans from "messages" %}Tournaments today{% endtrans %}</h2>
+        {% if tournamentsToday == [] %}
+            <div class="alert alert-info">{% trans from "messages" %}No tournaments today{% endtrans %}</div>
+        {% else %}
+            {% include 'tournament/table.html.twig' with {'tournamentList': tournamentsToday, 'showActive': false, 'isToday': true, 'copyLink': false} %}
+        {% endif %}
+        <br />
+        <h2>{% trans from "messages" %}My planned Tournaments{% endtrans %}</h2>
+        {% if planedTournaments == [] %}
+            <div class="alert alert-info">{% trans from "messages" %}You haven't created any tournaments yet!{% endtrans %}</div>
+        {% else %}
+            {% include 'tournament/table.html.twig' with {'tournamentList': planedTournaments, 'showActive': false, 'isToday': false, 'copyLink': true} %}
+        {% endif %}
+        <br />
+        <h2>{% trans from "messages" %}Shortcuts{% endtrans %}</h2>
+        <br />
+        <div class="row">
+            <div class="col-md-3 text-left">
+                <a class="btn btn-primary btn-lg" href="{{ path('tournament_create') }}" role="button">{% trans from "messages" %}Create Tournament{% endtrans %}</a>
+            </div>
+            <div class="col-md-3">
+                <a class="btn btn-primary btn-lg" href="{{ path('schedule_create') }}" role="button">{% trans from "messages" %}Create Schedule{% endtrans %}</a>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-3">
+                <a class="btn btn-primary btn-lg" href="{{ path('tournament_show') }}" role="button">{% trans from "messages" %}Show Tournaments{% endtrans %}</a>
+            </div>
+            <div class="col-md-3">
+                <a class="btn btn-primary btn-lg" href="{{ path('schedule_show') }}" role="button">{% trans from "messages" %}Show Schedule{% endtrans %}</a>
+            </div>
+            <div class="col-md-3">
+                <a class="btn btn-primary btn-lg" href="{{ path('standing') }}" role="button">{% trans from "messages" %}Show Standings{% endtrans %}</a>
+            </div>
+        </div>
+    </div>
+    <div data-ajax-url="{{ absolute_url(path('ajax_result')) }}"/>
+    <div class="modal fade" id="copyLinkModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{% trans from "messages" %}Clipboard{% endtrans %}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input id="clipboardInputField" value="">
+                    <!-- Trigger -->
+                    <button class="btn id-clipboard" data-clipboard-target="#clipboardInputField">
+                        <span class="oi oi-clipboard"></span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="resultChangedModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{% trans from "messages" %}Result Changed{% endtrans %}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p><span style="font-weight: bold;">{% trans from "messages" %}Tournament{% endtrans %}</span>: <span id="tournamentTeamResult"></span></p>
+                    <p style="height: 15px">{% trans from "messages" %}Result{% endtrans %}:<br />
+                        <span id="homeTeam"></span> <span id="homeTeamResult"></span>  <b>:</b>  <span id="awayTeamResult"></span> <span id="awayTeam"></span>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans from "messages" %}Close{% endtrans %}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <!--<script src="{{ asset('build/js/global.js') }}"></script> -->
+    <script src="{{ asset('build/js/dashboard.js') }}"></script>
+{% endblock %}

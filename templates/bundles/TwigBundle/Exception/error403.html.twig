@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{% trans from 'messages' %}Ups! - Access denied{% endtrans %}</h1>
+
+    <p>
+        {% trans from 'messages' %}You have not enough rights{% endtrans %}.
+        <a href="{{ path('dashboard') }}">{% trans from 'messages' %}return to dashboard{% endtrans %}</a>
+    </p>
+{% endblock %}

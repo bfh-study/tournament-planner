@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-3">{% trans from "messages" %}Welcome to TP!{% endtrans %}</h1>
+        <p class="lead">{% trans from "messages" %}Plan your tournaments{% endtrans %}</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="{{ path('login') }}" role="button">Login</a>
+            <a class="btn btn-success btn-lg" href="{{ path('user_registration') }}" role="button">{% trans from "messages" %}Register{% endtrans %}</a>
+        </p>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+    <h1 class="display-3">{% trans from "messages" %}Register{%endtrans %}</h1>
+    </div>
+</div>
+<div class="container">
+
+    {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {% trans from "messages" %}Team already exists!{% endtrans %}
+        </div>
+    {% endif %}
+
+    {% if isFormSubmittedAndValid %}
+        <div class="alert alert-success" role="alert">
+            {% trans from "messages" %}Congratulation! You registered your team successful.{% endtrans %}
+        </div>
+    {% else %}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    {% endif %}
+</div>
+{% endblock %}

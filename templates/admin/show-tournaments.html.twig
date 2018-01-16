@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-3">{% trans from "messages" %}Admin Area{% endtrans %} - {% trans from "messages" %}Tournaments{% endtrans %}</h1>
+    </div>
+</div>
+<div class="container">
+    {% if user == null %}
+        <div class="alert alert-danger">{% trans from "messages" %}No user selected!{% endtrans %}</div>
+    {% else %}
+        <h3>{% trans from "messages" %}User{% endtrans %}</h3>
+        <ul>
+            <li><b>{% trans from "messages" %}Username{% endtrans %}:</b> {{ user.username }}</li>
+            <li><b>{% trans from "messages" %}Mail{% endtrans %}:</b>  {{ user.email }}</li>
+        </ul>
+        <br />
+        <h3>{% trans from "messages" %}Tournaments{% endtrans %}</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>{% trans from "messages" %}Name{% endtrans %}</th>
+                    <th>{% trans from "messages" %}Place{% endtrans %}</th>
+                    <th>{% trans from "messages" %}Date{% endtrans %}</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for tournament in tournamentList %}
+                <tr>
+                    <th scope="row">{{ loop.index }}</th>
+                    <td>{{ tournament.name }}</td>
+                    <td>{{ tournament.place }}</td>
+                    <td>{{ tournament.date|date("d.m.y") }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+</div>
+    {% endif %}
+{% endblock %}

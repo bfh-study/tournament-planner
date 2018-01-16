@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-3">{% trans from "messages" %}Schedule{% endtrans %} - {{ tournament.name }}</h1>
+    </div>
+</div>
+<div class="container">
+{{ form_start(form) }}
+  <div class="form-row">
+    <div class="col-6">
+      {{ form_widget(form.tournament, {'attr': {'class': 'form-control'}}) }}
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-6">
+          {{ form_widget(form.generate, {'attr': {'class': 'btn btn-primary'}}) }}    
+    </div>
+  </div>
+{{ form_end(form) }}
+</div>
+<br />
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>{% trans from "messages" %}Date{% endtrans %}</th>
+                <th>{% trans from "messages" %}Field{% endtrans %}</th>
+                <th>{% trans from "messages" %}Home{% endtrans %}</th>
+                <th>{% trans from "messages" %}Away{% endtrans %}</th>
+                <th>{% trans from "messages" %}Result{% endtrans %}</th>
+                {% if tournament.isToday == true %}
+                    <th>{% trans from "messages" %}Action{% endtrans %}</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for schedule in scheduleList %}
+                <tr>
+                    <th scope="row">{{ loop.index }}</th>
+                    <td>{{ schedule.date|date("d.m.Y H:i") }}</td>
+                    <td>{{ schedule.field }}</td>
+                    <td>{{ schedule.homeTeam.name }}</td>
+                    <td>{{ schedule.awayTeam.name }}</td>
+                    <td>{{schedule.goalHome}}:{{schedule.goalAway}}</td>
+                    {% if tournament.isToday == true %}
+                        <td>
+                            <a class="oi oi-pencil btn-sm" title="{% trans from "messages" %}Update Result{% endtrans %}" href="{{ path('standing_update_form', {'tournamentId': tournament.id, 'gameNumber': schedule.gameNumber }) }}" aria-hidden="true"></a>
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

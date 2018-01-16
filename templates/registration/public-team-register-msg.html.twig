@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-3">{% trans from "messages" %}Register your tournament{%endtrans %}</h1>
+    </div>
+</div>
+<div class="container">
+    {% if type == 'success' %}
+      <div class="alert alert-success" role="alert">{{ msg|trans }}</div>
+  {% else %}
+      <div class="alert alert-danger" role="alert">{{ msg|trans }}</div>
+  {% endif %}
+</div>
+{% endblock %}

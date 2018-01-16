@@ -1,2 +1,66 @@
 
 @import '~bootstrap/scss/bootstrap';
+@import '~open-iconic/font/css/open-iconic-bootstrap';
+@import '_variables';
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    overflow-x: hidden;
+}
+
+body.fixed-nav{
+    padding-top: $navbar-height;
+}
+
+.content-wrapper{
+    min-height: calc(100vh - $navbar-height);
+    padding-top: 1rem;
+    margin: 0px 0px 2*$footer-height 0px;
+}
+
+.app-title {
+  text-transform: uppercase;
+}
+
+footer.sticky-footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: $footer-height;
+    line-height: $footer-height - 1px;
+
+    background-color: $gray-200;
+
+    @include media-breakpoint-down(sm) {
+        height: $footer-height-minimal;
+        line-height: $footer-height-minimal - 1px;
+    }
+}
+
+.feedback {
+  color: red;
+}
+
+form {
+    button[type=submit] {
+        margin-top: 15px;
+    }
+}
+
+.form-signin {
+    background-color: $gray-100;
+    max-width: 360px;
+    padding: 15px;
+    margin: 30px auto;
+
+    button[type=submit] {
+      margin-top: 15px;
+    }
+}
