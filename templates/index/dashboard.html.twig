@@ -10,14 +10,14 @@
         {% if tournamentsToday == [] %}
             <div class="alert alert-info">{% trans from "messages" %}No tournaments today{% endtrans %}</div>
         {% else %}
-            {% include 'tournament/table.html.twig' with {'tournamentList': tournamentsToday, 'showActive': false, 'isToday': true} %}
+            {% include 'tournament/table.html.twig' with {'tournamentList': tournamentsToday, 'showActive': false, 'isToday': true, 'copyLink': false} %}
         {% endif %}
         <br />
         <h2>{% trans from "messages" %}My planned Tournaments{% endtrans %}</h2>
         {% if planedTournaments == [] %}
             <div class="alert alert-info">{% trans from "messages" %}You haven't created any tournaments yet!{% endtrans %}</div>
         {% else %}
-            {% include 'tournament/table.html.twig' with {'tournamentList': planedTournaments, 'showActive': false, 'isToday': false} %}
+            {% include 'tournament/table.html.twig' with {'tournamentList': planedTournaments, 'showActive': false, 'isToday': false, 'copyLink': true} %}
         {% endif %}
         <br />
         <h2>{% trans from "messages" %}Shortcuts{% endtrans %}</h2>
