@@ -3,12 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Schedule;
-use App\Entity\Team;
 use App\Entity\Tournament;
 use App\Model\StandingCalculator;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,17 +16,25 @@ use Symfony\Component\Security\Core\Security;
 class StandingController extends Controller {
 
     /**
-     * @Route("/standing/show", name="standing")
+     * @Route("/standing/show/{tournament}", name="standing", defaults={"tournament": 0})
      */
-    public function show(Request $request, Security $security)
+    public function show(Request $request, Security $security, $tournament)
     {
         $formEntity = new \StdClass();
         $formEntity->tournament = null;
 
+        if (isset($tournament) && $tournament > 0) {
+            $repoTournament = $this->getDoctrine()->getRepository(Tournament::class);
+            $formEntity->tournament = $repoTournament->find($tournament);
+            if ($formEntity->tournament != null && $formEntity->tournament->getCreator() != $security->getUser()) {
+                return $this->render('index/dashboard.html.twig');
+            }
+        }
+
         $form = $this->createSearchForm($formEntity, $security->getUser(), 'Show Standing');
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if($form->isSubmitted() && $form->isValid() || isset($tournament) && $tournament > 0) {
             $repo = $this->getDoctrine()->getRepository(Schedule::class);
             $schedules = $repo->findBy(array('tournament' => $formEntity->tournament));
 
@@ -67,12 +73,18 @@ class StandingController extends Controller {
      *     }
      * )
      */
-    public function showUpdateResultForm(Request $request, $tournamentId, $gameNumber)
+    public function showUpdateResultForm(Request $request, Security $security, $tournamentId, $gameNumber)
     {
         $repo = $this->getDoctrine()->getRepository(Schedule::class);
         $schedules = $repo->findBy(array('tournament' => $tournamentId, 'gameNumber' => $gameNumber));
         if (count($schedules) == 0) {
-            return $this->render('index.html.twig');
+            return $this->render('index/dashboard.html.twig');
+        } else {
+            foreach ($schedules as $val) {
+                if ($val->getTournament()->getCreator() != $security->getUser() || !$val->getTournament()->isToday()) {
+                    return $this->render('index/dashboard.html.twig');
+                }
+            }
         }
         $schedule = $schedules[0];
         $form = $this->updateResultForm($schedule);
@@ -82,6 +94,7 @@ class StandingController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $em->merge($schedule);
             $em->flush();
+            return $this->redirectToRoute('schedule_show', array('tournament' => $tournamentId));
         }
 
         return $this->render('schedule/update-schedule.html.twig', array(
@@ -91,8 +104,8 @@ class StandingController extends Controller {
 
     private function updateResultForm(Schedule $schedule) {
         return $this->createFormBuilder($schedule)
-            ->add('goalHome', IntegerType::class, array('data' => 0))
-            ->add('goalAway', IntegerType::class, array('data' => 0))
+            ->add('goalHome', IntegerType::class, array('data' => $schedule->getGoalHome()))
+            ->add('goalAway', IntegerType::class, array('data' => $schedule->getGoalAway()))
             ->add('generate', SubmitType::class, array('label' => 'Update Result',))
             ->getForm();
     }

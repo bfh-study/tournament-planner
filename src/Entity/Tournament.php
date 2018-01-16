@@ -273,4 +273,16 @@ class Tournament extends AuditBase
     {
         return $this->date != null && $this->date > new \DateTime();
     }
+
+    /**
+     * @return bool
+     */
+    public function isToday() {
+        $today = new \DateTime();
+        $today->setTime(0, 0, 0);
+        if ($today->diff($this->date)->days == 0) {
+            return true;
+        }
+        return false;
+    }
 }

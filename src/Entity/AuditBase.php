@@ -22,4 +22,11 @@ abstract class AuditBase
      */
     protected $creator;
 
+    /**
+     * @return mixed
+     */
+    public function getCreator()
+    {
+        return $this->creator;
+    }
 }

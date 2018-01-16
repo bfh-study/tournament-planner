@@ -15,19 +15,28 @@ use Symfony\Component\Security\Core\Security;
 class ScheduleController extends Controller {
 
     /**
-     * @Route("/schedule/show", name="schedule_show")
+     * @Route("/schedule/show/{tournament}", name="schedule_show", defaults={"tournament": 0})
      */
-    public function show(Request $request, Security $security) {
+    public function show(Request $request, Security $security, $tournament) {
         $formEntity = new \StdClass();
         $formEntity->tournament = null;
+
+        if (isset($tournament) && $tournament > 0) {
+            $repoTournament = $this->getDoctrine()->getRepository(Tournament::class);
+            $formEntity->tournament = $repoTournament->find($tournament);
+            if ($formEntity->tournament != null && $formEntity->tournament->getCreator() != $security->getUser()) {
+                return $this->render('schedule/msg-error.html.twig',
+                    array ('msg' => 'Can not find schedule.', 'tournament' => $formEntity->tournament)
+                );
+            }
+        }
 
         $form = $this->createSearchForm($formEntity, $security->getUser(), 'Show Schedule');
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
-            $scheduleList = array();
+        if($form->isSubmitted() && $form->isValid() || isset($tournament) && $tournament > 0){
             $repo = $this->getDoctrine()->getRepository(Schedule::class);
-            $scheduleList = $repo->findBy(array('tournament' => $formEntity->tournament));
+            $scheduleList = $repo->findBy(array('tournament' => $formEntity->tournament ));
             return $this->render('schedule/showSchedule.html.twig', array(
                 'form' => $form->createView(),
                 'scheduleList' => $scheduleList, 
@@ -50,6 +59,11 @@ class ScheduleController extends Controller {
         $form = $this->createSearchForm($formEntity, $security->getUser(), 'Create Schedule');
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
+            if (count($formEntity->tournament->getSchedules()) > 0) {
+                return $this->render('schedule/msg-error.html.twig',
+                    array ('msg' => 'Can not create schedule, it already exists.', 'tournament' => $formEntity->tournament)
+                );
+            }
             $this->generateSchedule($formEntity->tournament);
         }
 
