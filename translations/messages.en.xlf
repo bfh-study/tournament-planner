@@ -220,7 +220,7 @@
             </trans-unit>
             <trans-unit id="standing.won">
                 <source>Won</source>
-                <target>Siege</target>
+                <target>Won</target>
             </trans-unit>
             <trans-unit id="standing.drawn">
                 <source>Drawn</source>
@@ -232,7 +232,7 @@
             </trans-unit>
             <trans-unit id="standing.goals">
                 <source>Goals</source>
-                <target>Tore</target>
+                <target>Goals</target>
             </trans-unit>
             <trans-unit id="standing.differenz">
                 <source>Dif.</source>

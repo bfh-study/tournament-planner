@@ -1,5 +1,6 @@
 require('bootstrap');
 var $ = require('jquery');
+var Clipboard = require('clipboard');
 
 const TIMEOUT = 3000;
 
@@ -44,6 +45,9 @@ $(document).ready(function() {
     var url = $('div[data-ajax-url]').attr('data-ajax-url');
     var dataStore = new DataStore();
     var interval = null;
+
+    var clip = new Clipboard('.id-clipboard');
+    console.log(clip);
 
     var timeoutCallback = function() {
         $.ajax(url, {
