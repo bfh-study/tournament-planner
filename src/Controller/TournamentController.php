@@ -46,7 +46,7 @@ class TournamentController extends Controller
                 'choice_label' => 'name',
                 'multiple' => false,
             ))
-            ->add('date', DateTimeType::class)
+            ->add('date', DateTimeType::class, array('data' => new \DateTime()))
             ->add('fields', IntegerType::class)
             ->add('duration', IntegerType::class)
             ->add('interruption', IntegerType::class)
@@ -67,6 +67,7 @@ class TournamentController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($tournament);
             $em->flush();
+            return $this->redirectToRoute('dashboard');
         }
 
         return $this->render('tournament/create.html.twig', array(
