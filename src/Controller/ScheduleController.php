@@ -65,6 +65,7 @@ class ScheduleController extends Controller {
                 );
             }
             $this->generateSchedule($formEntity->tournament);
+            return $this->redirectToRoute('dashboard');
         }
 
         return $this->render('schedule/createSchedule.html.twig', array(
