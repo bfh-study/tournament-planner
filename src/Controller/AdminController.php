@@ -56,7 +56,7 @@ class AdminController extends Controller
         $tournamentsList = array();
         if (!is_null($user)) {
             $repoTournament = $this->getDoctrine()->getRepository(Tournament::class);
-            $tournamentsList = $repoTournament->findAllTournamentsByUser($user);
+            $tournamentsList = $repoTournament->findBy(array('creator' =>$user));
         }
 
         return $this->render(
